@@ -28,6 +28,8 @@ nav{position:fixed;top:2px;left:0;right:0;z-index:50;display:flex;justify-conten
 main{position:relative;z-index:2}
 .panel{min-height:100vh;display:flex;align-items:center;padding:110px 8vw}
 .hero{justify-content:center;text-align:center}
+.hero .inner{position:relative;isolation:isolate;padding:30px 24px}
+.hero .inner:before{content:"";position:absolute;inset:0 -30px;z-index:-1;background:radial-gradient(ellipse at center,rgba(4,6,15,.96) 0%,rgba(4,6,15,.88) 55%,rgba(4,6,15,0) 100%);pointer-events:none}
 .inner{max-width:880px;width:100%}
 .eyebrow{display:flex;align-items:center;gap:14px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mid);margin-bottom:24px}
 .hero .eyebrow{justify-content:center}
