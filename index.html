@@ -67,6 +67,21 @@ em{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:40
 .note{color:var(--low);font-size:.82rem;max-width:760px;margin-top:10px}
 footer{position:relative;z-index:2;text-align:center;padding:30px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--low)}
 @media(max-width:860px){nav{padding:16px 20px}.nr a:not(.cta){display:none}.pk{grid-template-columns:1fr}.panel{padding:100px 6vw}.right{justify-content:flex-start}}
+
+.ov{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+.ov .card:hover{border-color:rgba(56,232,208,.5)}
+.ov .card h4{color:var(--hi)}
+.ov .card p{color:var(--mid);font-size:.9rem;font-weight:300;margin-top:6px}
+form.book{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px;max-width:760px}
+form.book .full{grid-column:1/-1}
+form.book label{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);margin-bottom:6px}
+form.book input,form.book select,form.book textarea{width:100%;background:rgba(8,12,28,.72);border:1px solid var(--line);border-radius:10px;color:var(--hi);padding:13px 14px;font-family:inherit;font-size:.95rem}
+form.book input:focus,form.book select:focus,form.book textarea:focus{outline:none;border-color:var(--b)}
+form.book textarea{min-height:110px;resize:vertical}
+form.book button{cursor:pointer;border:1px solid transparent;border-radius:99px;padding:15px 30px;background:linear-gradient(90deg,var(--a),var(--b));color:#06091a;font-family:inherit;font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.direct{margin-top:26px;color:var(--mid);font-size:.9rem;font-weight:300}
+.direct a{color:var(--b);text-decoration:none}
+@media(max-width:860px){.ov{grid-template-columns:1fr}form.book{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -74,90 +89,30 @@ footer{position:relative;z-index:2;text-align:center;padding:30px;font-size:11px
 <canvas id="gl"></canvas>
 <div class="vig"></div>
 <div class="progress"><i id="bar"></i></div>
-<nav><a class="brand" href="#top">Synthara<span>.ai</span></a><div class="nr"><a href="#services">Services</a><a href="#packages">Packages</a><a class="cta" href="#contact">Book a call</a></div></nav>
+<nav><a class="brand" href="index.html">Synthara<span>.ai</span></a><div class="nr"><span class="cta" style="border:none;color:var(--hi)">Home</span><a href="services.html">Services</a><a class="cta" href="consultation.html">Book my consultation</a></div></nav>
 <main id="top">
 <section class="panel hero in"><div class="inner"><div class="eyebrow">AI services for companies</div>
 <h1>Put AI to work<br>inside <em>your business</em></h1>
 <p class="lede fade">We build chatbots, calling agents, email agents and automations that handle the repetitive work, so your team can focus on growth.</p>
-<div class="pills fade"><a class="pill solid" href="#packages">See packages</a><a class="pill" href="#services">What we build</a></div></div><div class="cue">Scroll</div></section>
-
-<section class="panel left" id="services"><div class="inner"><div class="eyebrow">01 / Agents</div>
-<h2>Bots that <em>answer</em> and sell</h2>
-<p class="lede">Website, WhatsApp and Instagram chatbots trained on your own services and FAQs. They qualify leads, book meetings and hand over to your team when needed.</p>
-<ul class="list"><li>Lead capture and qualification, 24/7</li><li>Multi-language replies</li><li>CRM and calendar connection</li></ul></div></section>
-
-<section class="panel right"><div class="inner"><div class="eyebrow">02 / Voice</div>
-<h2>AI <em>calling</em> agents</h2>
-<p class="lede">Outbound cold calling and inbound answering with a natural voice. The agent follows your script, handles objections, and logs every call with a summary.</p>
-<ul class="list"><li>Outbound campaigns and follow-ups</li><li>Appointment booking during the call</li><li>Call recordings, transcripts and outcomes</li></ul></div></section>
-
-<section class="panel left"><div class="inner"><div class="eyebrow">03 / Inbox</div>
-<h2>Email <em>AI agent</em></h2>
-<p class="lede">An agent that reads incoming mail, drafts replies in your voice, sorts requests and follows up on its own, with approval rules you control.</p>
-<ul class="list"><li>Triage, tagging and routing</li><li>Draft or auto-send, your choice</li><li>Automatic follow-up sequences</li></ul></div></section>
-
-<section class="panel right"><div class="inner"><div class="eyebrow">04 / Workflow</div>
-<h2>Automate the <em>process</em></h2>
-<p class="lede">We map the manual steps in your operations and connect your tools so data moves without copy and paste: invoices, onboarding, reporting, approvals.</p>
-<ul class="list"><li>Workflow audit and design</li><li>Integrations with your existing tools</li><li>Monitoring and fixes after launch</li></ul></div></section>
-
-<section class="panel left"><div class="inner"><div class="eyebrow">05 / Reach</div>
-<h2>WhatsApp and email <em>marketing</em></h2>
-<p class="lede">Campaigns, broadcasts and drip sequences with AI-written copy, audience segments and clear reporting on opens, replies and bookings.</p>
-<ul class="list"><li>Segmented broadcasts and drip flows</li><li>AI copy with your approval</li><li>Monthly performance report</li></ul></div></section>
-
-<section class="panel right"><div class="inner"><div class="eyebrow">06 / Video</div>
-<h2>AI <em>avatar</em> videos</h2>
-<p class="lede">Talking-presenter videos for ads, explainers and social posts, in multiple languages, without a camera crew or studio.</p>
-<ul class="list"><li>Script, avatar, voice and captions</li><li>Vertical and horizontal formats</li><li>Fast turnaround</li></ul></div></section>
-
-<section class="panel wide sect" id="packages"><div class="inner">
-<div class="eyebrow">Packages</div>
-<h2>Clear pricing, <em>no surprises</em></h2>
-<p class="lede" style="margin-bottom:34px">Indicative market-rate prices in USD. Final quotes depend on scope and volume.</p>
-
-<h3>AI chatbots</h3><p class="s">WhatsApp, website and Instagram.</p>
-<div class="pk">
-<div class="card"><h4>Starter</h4><div class="price">$499<small>setup + $99/month</small></div><ul><li>1 channel</li><li>Up to 50 FAQs</li><li>Lead capture to email</li></ul></div>
-<div class="card hot"><h4>Growth</h4><div class="price">$1,499<small>setup + $249/month</small></div><ul><li>3 channels</li><li>Booking and CRM link</li><li>Human handover</li></ul></div>
-<div class="card"><h4>Custom</h4><div class="price">From $4,000<small>setup, quoted per project</small></div><ul><li>Custom integrations</li><li>Multi-language</li><li>Analytics dashboard</li></ul></div></div>
-
-<h3>Process automation</h3><p class="s">Priced by the number of workflows.</p>
-<div class="pk">
-<div class="card"><h4>Starter</h4><div class="price">$750<small>one-time</small></div><ul><li>1 to 2 workflows</li><li>Up to 3 tools connected</li><li>30-day support</li></ul></div>
-<div class="card hot"><h4>Business</h4><div class="price">$2,500<small>one-time</small></div><ul><li>Up to 6 workflows</li><li>Reporting automation</li><li>60-day support</li></ul></div>
-<div class="card"><h4>Enterprise</h4><div class="price">From $6,000<small>quoted per project</small></div><ul><li>Department-wide automation</li><li>Custom AI steps</li><li>Ongoing retainer option</li></ul></div></div>
-
-<h3>AI calling agent</h3><p class="s">Outbound and inbound voice agents. Call minutes are billed at cost by the voice platform.</p>
-<div class="pk">
-<div class="card"><h4>Pilot</h4><div class="price">$1,500<small>setup + usage about $0.15 to $0.25/min</small></div><ul><li>1 script, 1 campaign</li><li>Call logs and summaries</li><li>2-week test run</li></ul></div>
-<div class="card hot"><h4>Pro</h4><div class="price">$3,500<small>setup + $499/month</small></div><ul><li>Multiple scripts</li><li>Booking and CRM sync</li><li>Weekly tuning</li></ul></div>
-<div class="card"><h4>Scale</h4><div class="price">From $7,500<small>setup, quoted</small></div><ul><li>High-volume campaigns</li><li>Multi-language voices</li><li>Dedicated manager</li></ul></div></div>
-
-<h3>Email AI agent</h3><p class="s">Inbox triage, drafting and follow-ups.</p>
-<div class="pk">
-<div class="card"><h4>Starter</h4><div class="price">$799<small>setup + $149/month</small></div><ul><li>1 inbox</li><li>Drafts for approval</li><li>Smart tagging</li></ul></div>
-<div class="card hot"><h4>Pro</h4><div class="price">$1,999<small>setup + $299/month</small></div><ul><li>Up to 5 inboxes</li><li>Auto-replies with rules</li><li>Follow-up sequences</li></ul></div>
-<div class="card"><h4>Team</h4><div class="price">From $4,500<small>setup, quoted</small></div><ul><li>Shared team inboxes</li><li>CRM and ticket sync</li><li>Custom approval flows</li></ul></div></div>
-
-<h3>WhatsApp and email marketing</h3><p class="s">Monthly management. WhatsApp message fees and email platform costs are separate.</p>
-<div class="pk">
-<div class="card"><h4>Starter</h4><div class="price">$399<small>per month</small></div><ul><li>2 campaigns a month</li><li>1 audience segment</li><li>Monthly report</li></ul></div>
-<div class="card hot"><h4>Growth</h4><div class="price">$899<small>per month</small></div><ul><li>6 campaigns a month</li><li>Drip sequences</li><li>A/B tested copy</li></ul></div>
-<div class="card"><h4>Scale</h4><div class="price">$1,800<small>per month</small></div><ul><li>Unlimited campaigns</li><li>Advanced segments</li><li>Weekly strategy call</li></ul></div></div>
-
-<h3>AI avatar videos</h3><p class="s">Up to 60 seconds each, with script, voice and captions.</p>
-<div class="pk">
-<div class="card"><h4>Single</h4><div class="price">$149<small>per video</small></div><ul><li>1 avatar, 1 language</li><li>1 revision</li><li>3-day delivery</li></ul></div>
-<div class="card hot"><h4>Monthly 5</h4><div class="price">$599<small>per month, 5 videos</small></div><ul><li>Brand-matched avatar</li><li>2 languages</li><li>2 revisions each</li></ul></div>
-<div class="card"><h4>Monthly 15</h4><div class="price">$1,490<small>per month, 15 videos</small></div><ul><li>Custom avatar</li><li>Multi-language</li><li>Priority delivery</li></ul></div></div>
-<p class="note">All prices are indicative starting rates and may change with scope, volume and third-party platform costs. Taxes extra.</p>
+<div class="pills fade"><a class="pill solid" href="services.html">See services and packages</a><a class="pill" href="consultation.html">Book my consultation</a></div></div><div class="cue">Scroll</div></section>
+<section class="panel wide sect"><div class="inner">
+<div class="eyebrow">What we build</div>
+<h2>Six ways AI can <em>work for you</em></h2>
+<div class="ov">
+<a class="card" style="text-decoration:none" href="services.html#agents"><h4>01 / AI chatbots</h4><p>Website, WhatsApp and Instagram bots that answer, qualify leads and book meetings, 24/7.</p></a>
+<a class="card" style="text-decoration:none" href="services.html#voice"><h4>02 / AI calling agents</h4><p>Natural-voice outbound and inbound calling with scripts, summaries and appointment booking.</p></a>
+<a class="card" style="text-decoration:none" href="services.html#inbox"><h4>03 / Email AI agent</h4><p>Reads your inbox, drafts replies in your voice and follows up on its own, with your rules.</p></a>
+<a class="card" style="text-decoration:none" href="services.html#workflow"><h4>04 / Process automation</h4><p>Connect your tools so invoices, onboarding, reporting and approvals move on their own.</p></a>
+<a class="card" style="text-decoration:none" href="services.html#reach"><h4>05 / WhatsApp and email marketing</h4><p>Campaigns and drip sequences with AI-written copy, segments and clear reporting.</p></a>
+<a class="card" style="text-decoration:none" href="services.html#video"><h4>06 / AI avatar videos</h4><p>Talking-presenter videos for ads and social, in multiple languages, no studio needed.</p></a>
+</div>
+<div class="pills"><a class="pill solid" href="services.html">Full services and pricing</a></div>
 </div></section>
 
-<section class="panel hero" id="contact"><div class="inner"><div class="eyebrow">Start here</div>
+<section class="panel hero"><div class="inner"><div class="eyebrow">Start here</div>
 <h2>Tell us what to <em>automate</em></h2>
 <p class="lede">Share one process that eats your team's time. We will come back with a plan and a quote.</p>
-<div class="pills"><a class="pill solid" href="mailto:arabianzones@gmail.com?subject=Synthara%20AI%20enquiry">Book a call</a></div></div></section>
+<div class="pills"><a class="pill solid" href="consultation.html">Book my consultation</a></div></div></section>
 </main>
 <footer>&copy; 2026 Synthara AI</footer>
 <script type="importmap">{"imports":{"three":"./4-three.module.min.js"}}</script>
@@ -204,5 +159,6 @@ addEventListener('scroll',()=>{const m=document.documentElement.scrollHeight-inn
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.15});
 document.querySelectorAll('.panel,.sect').forEach(p=>io.observe(p));
 </script>
+
 </body>
 </html>
