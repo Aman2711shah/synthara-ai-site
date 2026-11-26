@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Synthara AI | AI Agents, Automation and Marketing for Business</title>
+<meta name="description" content="Synthara AI builds chatbots, process automation, AI calling agents, email AI agents, WhatsApp and email marketing, and AI avatar videos for companies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--void:#04060f;--a:#7c5cff;--b:#38e8d0;--hi:#f2f5fb;--mid:#9aa8c2;--low:#5a6783;--line:rgba(154,168,194,.18);--ease:cubic-bezier(.16,1,.3,1)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--hi);font-family:"Space Grotesk",system-ui,sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+#gl{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block}
+.fallback{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 50% 40% at 50% 45%,rgba(124,92,255,.22),transparent 70%),var(--void)}
+.vig{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 120% 100% at 50% 50%,transparent 40%,rgba(4,6,15,.8) 100%)}
+.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:60}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--a),var(--b))}
+nav{position:fixed;top:2px;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:22px 44px}
+.brand{font-family:Syne,sans-serif;font-weight:700;font-size:15px;letter-spacing:.22em;text-transform:uppercase;color:var(--hi);text-decoration:none}
+.brand span{color:var(--b)}
+.nr{display:flex;align-items:center;gap:26px}
+.nr a{color:var(--mid);text-decoration:none;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.nr a:hover{color:var(--hi)}
+.nr .cta{border:1px solid var(--line);padding:9px 20px;border-radius:99px;color:var(--hi)}
+main{position:relative;z-index:2}
+.panel{min-height:100vh;display:flex;align-items:center;padding:110px 8vw}
+.hero{justify-content:center;text-align:center}
+.hero .inner{position:relative;isolation:isolate;padding:30px 24px}
+.hero .inner:before{content:"";position:absolute;inset:0 -30px;z-index:-1;background:radial-gradient(ellipse at center,rgba(4,6,15,.94) 0%,rgba(4,6,15,.85) 55%,rgba(4,6,15,0) 100%);pointer-events:none}
+.inner{max-width:880px;width:100%}
+.eyebrow{display:flex;align-items:center;gap:14px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mid);margin-bottom:24px}
+.hero .eyebrow{justify-content:center}
+.eyebrow:before{content:"";width:46px;height:1px;background:var(--b)}
+h1,h2{font-family:Syne,sans-serif;font-weight:800;text-transform:uppercase;line-height:1.04}
+h1{font-size:clamp(1.9rem,5.4vw,4.6rem)}
+h2{font-size:clamp(1.5rem,4vw,3.2rem);margin-bottom:20px}
+em{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;text-transform:none;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.1em}
+.lede{max-width:600px;color:var(--mid);font-size:1.1rem;font-weight:300}
+.hero .lede{margin:24px auto 0}
+.pills{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+.hero .pills{justify-content:center}
+.pill{display:inline-block;padding:14px 28px;border-radius:99px;border:1px solid var(--line);color:var(--hi);text-decoration:none;font-size:12px;letter-spacing:.16em;text-transform:uppercase;transition:transform .3s;background:rgba(4,6,15,.4)}
+.pill.solid{background:linear-gradient(90deg,var(--a),var(--b));color:#06091a;border-color:transparent;font-weight:500}
+.pill:hover{transform:translateY(-2px)}
+.right{justify-content:flex-end}.right .inner,.left .inner{max-width:560px}
+.cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--low)}
+.list{margin-top:24px;list-style:none;border-top:1px solid var(--line)}
+.list li{padding:11px 0;border-bottom:1px solid var(--line);color:var(--mid);font-size:.95rem}
+.fade{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.in .fade{opacity:1;transform:none}
+.wide{display:block;padding:110px 6vw}
+.wide .inner{max-width:1180px;margin:0 auto}
+.pk{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:10px 0 56px}
+.card{border:1px solid var(--line);border-radius:18px;padding:26px;background:rgba(8,12,28,.72);backdrop-filter:blur(8px);display:flex;flex-direction:column}
+.card.hot{border-color:rgba(124,92,255,.7);box-shadow:0 0 40px rgba(124,92,255,.18)}
+.card h4{font-family:Syne,sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--b);margin-bottom:10px}
+.price{font-family:Syne,sans-serif;font-weight:800;font-size:1.9rem;line-height:1.1}
+.price small{display:block;font-family:"Space Grotesk",sans-serif;font-weight:300;font-size:.82rem;color:var(--mid);margin-top:4px}
+.card ul{list-style:none;margin-top:16px;color:var(--mid);font-size:.92rem}
+.card li{padding:6px 0 6px 18px;position:relative}
+.card li:before{content:"";position:absolute;left:0;top:14px;width:8px;height:1px;background:var(--b)}
+.sect h3{font-family:Syne,sans-serif;font-size:1.3rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.sect p.s{color:var(--mid);margin-bottom:18px;max-width:640px;font-weight:300}
+.note{color:var(--low);font-size:.82rem;max-width:760px;margin-top:10px}
+footer{position:relative;z-index:2;text-align:center;padding:30px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--low)}
+@media(max-width:860px){nav{padding:16px 20px}.nr a:not(.cta){display:none}.pk{grid-template-columns:1fr}.panel{padding:100px 6vw}.right{justify-content:flex-start}}
+
+.ov{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+.ov .card:hover{border-color:rgba(56,232,208,.5)}
+.ov .card h4{color:var(--hi)}
+.ov .card p{color:var(--mid);font-size:.9rem;font-weight:300;margin-top:6px}
+form.book{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px;max-width:760px}
+form.book .full{grid-column:1/-1}
+form.book label{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);margin-bottom:6px}
+form.book input,form.book select,form.book textarea{width:100%;background:rgba(8,12,28,.72);border:1px solid var(--line);border-radius:10px;color:var(--hi);padding:13px 14px;font-family:inherit;font-size:.95rem}
+form.book input:focus,form.book select:focus,form.book textarea:focus{outline:none;border-color:var(--b)}
+form.book textarea{min-height:110px;resize:vertical}
+form.book button{cursor:pointer;border:1px solid transparent;border-radius:99px;padding:15px 30px;background:linear-gradient(90deg,var(--a),var(--b));color:#06091a;font-family:inherit;font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.direct{margin-top:26px;color:var(--mid);font-size:.9rem;font-weight:300}
+.direct a{color:var(--b);text-decoration:none}
+@media(max-width:860px){.ov{grid-template-columns:1fr}form.book{grid-template-columns:1fr}}
+.dim{position:fixed;inset:0;z-index:1;pointer-events:none;background:rgba(4,6,15,.55)}
+
+.dim{position:fixed;inset:0;z-index:1;pointer-events:none;background:rgba(4,6,15,.55);transition:opacity .6s}
+body[data-view=home] .dim{opacity:0}
+#gl{transition:opacity .3s}#gl.off{opacity:0}
+.view{display:none}.view.on{display:block;animation:vin .7s var(--ease)}
+@keyframes vin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.nr a.on{color:var(--hi);box-shadow:0 1px 0 var(--b)}
+.nr a.cta.on{border-color:var(--b);box-shadow:none}
+.blogs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+.post{border:1px solid var(--line);border-radius:18px;padding:26px;background:rgba(8,12,28,.78);backdrop-filter:blur(8px)}
+.post .meta{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--b);margin-bottom:10px}
+.post h3{font-family:Syne,sans-serif;font-size:1.15rem;line-height:1.25;text-transform:uppercase;letter-spacing:.03em;margin-bottom:10px}
+.post p{color:var(--mid);font-size:.93rem;font-weight:300;margin-top:10px}
+.post summary{cursor:pointer;list-style:none;margin-top:16px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--hi)}
+.post summary::-webkit-details-marker{display:none}
+.post details[open] summary{color:var(--b)}
+@media(max-width:860px){nav{flex-wrap:wrap;gap:10px;padding:12px 16px}.nr{gap:14px;width:100%;overflow-x:auto}.nr a:not(.cta){display:inline}.nr a{font-size:11px;white-space:nowrap}.nr .cta{padding:6px 14px}.blogs{grid-template-columns:1fr}.panel{padding-top:130px}}
+</style>
+</head>
+<body data-view="home">
+<div class="fallback"></div>
+<canvas id="gl"></canvas>
+<div class="dim"></div>
+<div class="vig"></div>
+<div class="progress"><i id="bar"></i></div>
+<nav><a class="brand" href="#home">Synthara<span>.ai</span></a><div class="nr"><a href="#home" data-v="home">Home</a><a href="#services" data-v="services">Services</a><a href="#blogs" data-v="blogs">Blogs</a><a class="cta" href="#consultation" data-v="consultation">Book my consultation</a></div></nav>
+<main id="top">
+<div class="view on" id="v-home">
+<section class="panel hero in"><div class="inner"><div class="eyebrow">AI services for companies</div>
+<h1>Put AI to work<br>inside <em>your business</em></h1>
+<p class="lede fade">We build chatbots, calling agents, email agents and automations that handle the repetitive work, so your team can focus on growth.</p>
+<div class="pills fade"><a class="pill solid" href="#services">See services and packages</a><a class="pill" href="#consultation">Book my consultation</a></div></div><div class="cue">Scroll</div></section>
+<section class="panel wide sect"><div class="inner">
+<div class="eyebrow">What we build</div>
+<h2>Six ways AI can <em>work for you</em></h2>
+<div class="ov">
+<a class="card" style="text-decoration:none" href="#services/agents"><h4>01 / AI chatbots</h4><p>Website, WhatsApp and Instagram bots that answer, qualify leads and book meetings, 24/7.</p></a>
+<a class="card" style="text-decoration:none" href="#services/voice"><h4>02 / AI calling agents</h4><p>Natural-voice outbound and inbound calling with scripts, summaries and appointment booking.</p></a>
+<a class="card" style="text-decoration:none" href="#services/inbox"><h4>03 / Email AI agent</h4><p>Reads your inbox, drafts replies in your voice and follows up on its own, with your rules.</p></a>
+<a class="card" style="text-decoration:none" href="#services/workflow"><h4>04 / Process automation</h4><p>Connect your tools so invoices, onboarding, reporting and approvals move on their own.</p></a>
+<a class="card" style="text-decoration:none" href="#services/reach"><h4>05 / WhatsApp and email marketing</h4><p>Campaigns and drip sequences with AI-written copy, segments and clear reporting.</p></a>
+<a class="card" style="text-decoration:none" href="#services/video"><h4>06 / AI avatar videos</h4><p>Talking-presenter videos for ads and social, in multiple languages, no studio needed.</p></a>
+</div>
+<div class="pills"><a class="pill solid" href="#services">Full services and pricing</a></div>
+</div></section>
+
+<section class="panel hero"><div class="inner"><div class="eyebrow">Start here</div>
+<h2>Tell us what to <em>automate</em></h2>
+<p class="lede">Share one process that eats your team's time. We will come back with a plan and a quote.</p>
+<div class="pills"><a class="pill solid" href="#consultation">Book my consultation</a></div></div></section>
+</div>
+<div class="view" id="v-services">
+<section class="panel hero in" style="min-height:60vh"><div class="inner"><div class="eyebrow">Services and packages</div>
+<h1>Everything we <em>build</em></h1>
+<p class="lede fade">Six AI services with clear, market-rate packages. Scroll for details, or jump straight to a consultation.</p>
+<div class="pills fade"><a class="pill solid" href="#consultation">Book my consultation</a><a class="pill" href="#services/agents">Browse services</a></div></div></section>
+<section class="panel left" id="agents"><div class="inner"><div class="eyebrow">01 / Agents</div>
+<h2>Bots that <em>answer</em> and sell</h2>
+<p class="lede">Website, WhatsApp and Instagram chatbots trained on your own services and FAQs. They qualify leads, book meetings and hand over to your team when needed.</p>
+<ul class="list"><li>Lead capture and qualification, 24/7</li><li>Multi-language replies</li><li>CRM and calendar connection</li></ul></div></section>
+
+<section class="panel right" id="voice"><div class="inner"><div class="eyebrow">02 / Voice</div>
+<h2>AI <em>calling</em> agents</h2>
+<p class="lede">Outbound cold calling and inbound answering with a natural voice. The agent follows your script, handles objections, and logs every call with a summary.</p>
+<ul class="list"><li>Outbound campaigns and follow-ups</li><li>Appointment booking during the call</li><li>Call recordings, transcripts and outcomes</li></ul></div></section>
+
+<section class="panel left" id="inbox"><div class="inner"><div class="eyebrow">03 / Inbox</div>
+<h2>Email <em>AI agent</em></h2>
+<p class="lede">An agent that reads incoming mail, drafts replies in your voice, sorts requests and follows up on its own, with approval rules you control.</p>
+<ul class="list"><li>Triage, tagging and routing</li><li>Draft or auto-send, your choice</li><li>Automatic follow-up sequences</li></ul></div></section>
+
+<section class="panel right" id="workflow"><div class="inner"><div class="eyebrow">04 / Workflow</div>
+<h2>Automate the <em>process</em></h2>
+<p class="lede">We map the manual steps in your operations and connect your tools so data moves without copy and paste: invoices, onboarding, reporting, approvals.</p>
+<ul class="list"><li>Workflow audit and design</li><li>Integrations with your existing tools</li><li>Monitoring and fixes after launch</li></ul></div></section>
+
+<section class="panel left" id="reach"><div class="inner"><div class="eyebrow">05 / Reach</div>
+<h2>WhatsApp and email <em>marketing</em></h2>
+<p class="lede">Campaigns, broadcasts and drip sequences with AI-written copy, audience segments and clear reporting on opens, replies and bookings.</p>
+<ul class="list"><li>Segmented broadcasts and drip flows</li><li>AI copy with your approval</li><li>Monthly performance report</li></ul></div></section>
+
+<section class="panel right" id="video"><div class="inner"><div class="eyebrow">06 / Video</div>
+<h2>AI <em>avatar</em> videos</h2>
+<p class="lede">Talking-presenter videos for ads, explainers and social posts, in multiple languages, without a camera crew or studio.</p>
+<ul class="list"><li>Script, avatar, voice and captions</li><li>Vertical and horizontal formats</li><li>Fast turnaround</li></ul></div></section>
+
+<section class="panel wide sect" id="packages"><div class="inner">
+<div class="eyebrow">Packages</div>
+<h2>Clear pricing, <em>no surprises</em></h2>
+<p class="lede" style="margin-bottom:34px">Indicative market-rate prices in USD. Final quotes depend on scope and volume.</p>
+
+<h3>AI chatbots</h3><p class="s">WhatsApp, website and Instagram.</p>
+<div class="pk">
+<div class="card"><h4>Starter</h4><div class="price">$499<small>setup + $99/month</small></div><ul><li>1 channel</li><li>Up to 50 FAQs</li><li>Lead capture to email</li></ul></div>
+<div class="card hot"><h4>Growth</h4><div class="price">$1,499<small>setup + $249/month</small></div><ul><li>3 channels</li><li>Booking and CRM link</li><li>Human handover</li></ul></div>
+<div class="card"><h4>Custom</h4><div class="price">From $4,000<small>setup, quoted per project</small></div><ul><li>Custom integrations</li><li>Multi-language</li><li>Analytics dashboard</li></ul></div></div>
+
+<h3>Process automation</h3><p class="s">Priced by the number of workflows.</p>
+<div class="pk">
+<div class="card"><h4>Starter</h4><div class="price">$750<small>one-time</small></div><ul><li>1 to 2 workflows</li><li>Up to 3 tools connected</li><li>30-day support</li></ul></div>
+<div class="card hot"><h4>Business</h4><div class="price">$2,500<small>one-time</small></div><ul><li>Up to 6 workflows</li><li>Reporting automation</li><li>60-day support</li></ul></div>
+<div class="card"><h4>Enterprise</h4><div class="price">From $6,000<small>quoted per project</small></div><ul><li>Department-wide automation</li><li>Custom AI steps</li><li>Ongoing retainer option</li></ul></div></div>
+
+<h3>AI calling agent</h3><p class="s">Outbound and inbound voice agents. Call minutes are billed at cost by the voice platform.</p>
+<div class="pk">
+<div class="card"><h4>Pilot</h4><div class="price">$1,500<small>setup + usage about $0.15 to $0.25/min</small></div><ul><li>1 script, 1 campaign</li><li>Call logs and summaries</li><li>2-week test run</li></ul></div>
+<div class="card hot"><h4>Pro</h4><div class="price">$3,500<small>setup + $499/month</small></div><ul><li>Multiple scripts</li><li>Booking and CRM sync</li><li>Weekly tuning</li></ul></div>
+<div class="card"><h4>Scale</h4><div class="price">From $7,500<small>setup, quoted</small></div><ul><li>High-volume campaigns</li><li>Multi-language voices</li><li>Dedicated manager</li></ul></div></div>
+
+<h3>Email AI agent</h3><p class="s">Inbox triage, drafting and follow-ups.</p>
+<div class="pk">
+<div class="card"><h4>Starter</h4><div class="price">$799<small>setup + $149/month</small></div><ul><li>1 inbox</li><li>Drafts for approval</li><li>Smart tagging</li></ul></div>
+<div class="card hot"><h4>Pro</h4><div class="price">$1,999<small>setup + $299/month</small></div><ul><li>Up to 5 inboxes</li><li>Auto-replies with rules</li><li>Follow-up sequences</li></ul></div>
+<div class="card"><h4>Team</h4><div class="price">From $4,500<small>setup, quoted</small></div><ul><li>Shared team inboxes</li><li>CRM and ticket sync</li><li>Custom approval flows</li></ul></div></div>
+
+<h3>WhatsApp and email marketing</h3><p class="s">Monthly management. WhatsApp message fees and email platform costs are separate.</p>
+<div class="pk">
+<div class="card"><h4>Starter</h4><div class="price">$399<small>per month</small></div><ul><li>2 campaigns a month</li><li>1 audience segment</li><li>Monthly report</li></ul></div>
+<div class="card hot"><h4>Growth</h4><div class="price">$899<small>per month</small></div><ul><li>6 campaigns a month</li><li>Drip sequences</li><li>A/B tested copy</li></ul></div>
+<div class="card"><h4>Scale</h4><div class="price">$1,800<small>per month</small></div><ul><li>Unlimited campaigns</li><li>Advanced segments</li><li>Weekly strategy call</li></ul></div></div>
+
+<h3>AI avatar videos</h3><p class="s">Up to 60 seconds each, with script, voice and captions.</p>
+<div class="pk">
+<div class="card"><h4>Single</h4><div class="price">$149<small>per video</small></div><ul><li>1 avatar, 1 language</li><li>1 revision</li><li>3-day delivery</li></ul></div>
+<div class="card hot"><h4>Monthly 5</h4><div class="price">$599<small>per month, 5 videos</small></div><ul><li>Brand-matched avatar</li><li>2 languages</li><li>2 revisions each</li></ul></div>
+<div class="card"><h4>Monthly 15</h4><div class="price">$1,490<small>per month, 15 videos</small></div><ul><li>Custom avatar</li><li>Multi-language</li><li>Priority delivery</li></ul></div></div>
+<p class="note">All prices are indicative starting rates and may change with scope, volume and third-party platform costs. Taxes extra.</p>
+</div></section>
+</div>
+<div class="view" id="v-blogs"><section class="panel hero in" style="min-height:60vh"><div class="inner"><div class="eyebrow">Blogs</div>
+<h1>Notes on putting <em>AI to work</em></h1>
+<p class="lede fade">Short, practical reads on automation, agents and marketing for growing companies.</p></div></section>
+<section class="panel wide sect" style="padding-top:0"><div class="inner">
+<div class="blogs">
+<article class="post"><div class="meta">Automation / Nov 27, 2026</div><h3>Which tasks should you automate first?</h3>
+<p>Start with work that is repetitive, rule-based and done many times a week.</p>
+<details><summary>Read more</summary>
+<p>Good first candidates are the jobs your team already describes as "copy this, paste that": sending invoices, answering the same customer questions, updating a sheet after every sale, chasing follow-ups.</p>
+<p>Write the steps down, count how often it happens and how long it takes, then pick the one with the clearest steps. A small, boring win ships fast and builds trust for bigger automation later.</p>
+<p>Keep a person in the loop for anything involving money or sensitive decisions until the flow has proven itself.</p></details></article>
+<article class="post"><div class="meta">Agents / Nov 27, 2026</div><h3>Chatbot, calling agent or email agent: how to choose</h3>
+<p>Match the agent to where your customers already talk to you.</p>
+<details><summary>Read more</summary>
+<p>If most enquiries arrive on WhatsApp, Instagram or your website, a chatbot answers instantly and captures the lead. If your sales depend on phone conversations, a calling agent can make first-touch and follow-up calls and log the outcome.</p>
+<p>If your pain is a crowded inbox, an email agent can sort, draft and follow up under rules you set. Many companies start with one channel, then add the next once the first is running well.</p></details></article>
+<article class="post"><div class="meta">Video / Nov 27, 2026</div><h3>What AI avatar videos are good for, and what they are not</h3>
+<p>Great for fast, repeatable explainers and ads. Not a replacement for every kind of video.</p>
+<details><summary>Read more</summary>
+<p>An AI presenter works well for product explainers, short social ads, training clips and the same message in several languages, without a studio or camera crew.</p>
+<p>It is a weaker fit for emotional brand films or founder stories where a real face and real setting matter. A sensible mix is real footage for trust, avatar videos for volume and speed.</p></details></article>
+</div>
+<div class="pills"><a class="pill solid" href="#consultation">Book my consultation</a></div>
+</div></section></div>
+<div class="view" id="v-consultation">
+<section class="panel hero in" style="min-height:100vh"><div class="inner" style="text-align:left">
+<div class="eyebrow">Book my consultation</div>
+<h1>Book my <em>consultation</em></h1>
+<p class="lede fade">Tell us a little about your business and what you want to automate. We reply with a plan and a quote, usually within one working day.</p>
+<form class="book fade" id="cform">
+<div><label for="name">Your name</label><input id="name" required></div>
+<div><label for="company">Company</label><input id="company"></div>
+<div><label for="email">Email</label><input id="email" type="email" required></div>
+<div><label for="phone">Phone / WhatsApp</label><input id="phone"></div>
+<div class="full"><label for="service">Service you are interested in</label>
+<select id="service"><option>AI chatbots</option><option>AI calling agent</option><option>Email AI agent</option><option>Process automation</option><option>WhatsApp and email marketing</option><option>AI avatar videos</option><option>Not sure yet</option></select></div>
+<div class="full"><label for="msg">What should we automate?</label><textarea id="msg" placeholder="Example: answering the same WhatsApp questions all day"></textarea></div>
+<div class="full"><button type="submit">Send enquiry</button></div>
+</form>
+<p class="direct fade">This form opens your email app with the enquiry ready to send. You can also write to us directly at <a href="mailto:arabianzones@gmail.com?subject=Synthara%20AI%20consultation">arabianzones@gmail.com</a>.</p>
+</div></section>
+</div>
+</main>
+<footer>&copy; 2026 Synthara AI</footer>
+<script>
+(function(){
+var cv=document.getElementById('gl'),fb=document.querySelector('.fallback');
+var MOB=innerWidth<700;
+var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var gl=null;if(!RM)gl=cv.getContext('webgl2',{antialias:false,alpha:false,depth:false,stencil:false,powerPreference:'high-performance'});
+var scene=null,cur='home',sp=0,tsp=0,mx=.5,my=.5,smx=.5,smy=.5,mo=0,tmo=0;
+function sh(t,s){var h=gl.createShader(t);gl.shaderSource(h,s);gl.compileShader(h);
+if(!gl.getShaderParameter(h,gl.COMPILE_STATUS)){console.warn('shader:',gl.getShaderInfoLog(h));return null}return h}
+function prog(d){var vs=sh(gl.VERTEX_SHADER,d.VS),fs=sh(gl.FRAGMENT_SHADER,d.FS);if(!vs||!fs)return null;
+var p=gl.createProgram();gl.attachShader(p,vs);gl.attachShader(p,fs);gl.linkProgram(p);
+if(!gl.getProgramParameter(p,gl.LINK_STATUS)){console.warn('link:',gl.getProgramInfoLog(p));return null}
+var u={};['uR','uT','uM','uS','uMorph','uP','uCount','uDPR'].forEach(function(n){u[n]=gl.getUniformLocation(p,n)});return {p:p,u:u}}
+var S={};
+var asp=1,dpr=1;
+function persp(fovy,as,n,f){var t=1/Math.tan(fovy/2),d=1/(n-f);
+return new Float32Array([t/as,0,0,0, 0,t,0,0, 0,0,(f+n)*d,-1, 0,0,2*f*n*d,0])}
+function rs(){if(!gl)return;dpr=Math.min(devicePixelRatio||1,MOB?1.25:1.75);cv.width=Math.round(innerWidth*dpr);cv.height=Math.round(innerHeight*dpr);asp=cv.width/cv.height;gl.viewport(0,0,cv.width,cv.height)}
+function scrollP(){var m=document.documentElement.scrollHeight-innerHeight;return m>0?scrollY/m:0}
+function pick(v){return v==='services'?'helix':v==='consultation'?'aurora':'synapse'}
+window.__scene=function(v,instant){
+ if(!gl)return;cur=v;
+ var go=function(){scene=S[pick(v)]||null;scene&&gl.useProgram(scene.p);cv.classList.remove('off');tsp=0;sp=0;tmo=0;mo=0};
+ if(instant){go();return}
+ cv.classList.add('off');setTimeout(go,300)};
+if(gl){
+ var HOME=(function(){var VS='#version 300 es\nvoid main(){vec2 p=vec2[](vec2(-1.,-1.),vec2(3.,-1.),vec2(-1.,3.))[gl_VertexID];gl_Position=vec4(p,0.,1.);}';
+var FS='#version 300 es\nprecision highp float;\n'+
+'uniform vec2 uR;uniform float uT;uniform vec2 uM;uniform float uS;out vec4 o;\n'+
+'#define OCT '+(MOB?4:6)+'\n'+
+'float hash(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}\n'+
+'float noise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);f=f*f*(3.-2.*f);'+
+'float a=hash(i),b=hash(i+vec2(1.,0.)),c=hash(i+vec2(0.,1.)),d=hash(i+vec2(1.,1.));'+
+'return mix(mix(a,b,f.x),mix(c,d,f.x),f.y);}\n'+
+'float fbm(vec2 p){float v=0.;float a=.5;mat2 m=mat2(1.6,1.2,-1.2,1.6);'+
+'for(int i=0;i<OCT;i++){v+=a*noise(p);p=m*p;a*=.55;}return v;}\n'+
+'void main(){\n'+
+'vec2 uv=(gl_FragCoord.xy-.5*uR)/uR.y;\n'+
+'vec2 mo=(uM-.5)*vec2(uR.x/uR.y,1.);\n'+
+'float t=uT*.05;\n'+
+'float zoom=1.7+uS*.9;\n'+
+'vec2 p=uv*zoom;\n'+
+'p.x+=.15*sin(t*.7);\n'+
+'vec2 dm=p-mo*zoom;\n'+
+'float well=exp(-dot(dm,dm)*1.8);\n'+
+'p-=normalize(dm+1e-4)*well*.4;\n'+
+'vec2 q=vec2(fbm(p+vec2(0.,t)),fbm(p+vec2(5.2,1.3)-t*.8));\n'+
+'vec2 r=vec2(fbm(p+(1.6+uS*1.4)*q+vec2(1.7,9.2)+.18*t),fbm(p+(1.6+uS*1.4)*q+vec2(8.3,2.8)-.14*t));\n'+
+'float f=fbm(p+(1.8+uS*1.6)*r);\n'+
+'vec3 vod=vec3(.012,.02,.055);\n'+
+'vec3 vio=vec3(.486,.361,1.);\n'+
+'vec3 tea=vec3(.22,.91,.815);\n'+
+'vec3 col=vod;\n'+
+'col=mix(col,vio*.6,smoothstep(.25,.95,f)*.85);\n'+
+'col=mix(col,tea*.55,clamp(dot(q,q)*.5,0.,1.)*smoothstep(.4,.9,r.y));\n'+
+'float ridge=abs(2.*f-1.);ridge=pow(1.-ridge,9.);\n'+
+'col+=mix(vio,tea,clamp(r.x,0.,1.))*ridge*(.4+.2*sin(uT*.5));\n'+
+'float sp=noise(p*14.+r*7.+t*2.2);sp=pow(sp,16.)*smoothstep(.35,.75,f);\n'+
+'col+=tea*sp*2.4;\n'+
+'float core=exp(-length(uv-vec2(.62,.08))*2.6);\n'+
+'col+=vio*core*(.28+.10*sin(uT*.6));\n'+
+'col+=mix(tea,vio,.5)*well*.5;\n'+
+'col*=1.-.35*dot(uv*.7,uv*.7);\n'+
+'col=1.-exp(-col*1.4);\n'+
+'o=vec4(col,1.);}';
+ return {VS:VS,FS:FS}})();
+ var SVC=(function(){var N=MOB?42000:150000;
+var VS='#version 300 es\nprecision highp float;\n'+
+'uniform float uT;uniform float uMorph;uniform vec2 uM;uniform mat4 uP;uniform float uCount;uniform float uDPR;\n'+
+'out float vMix;out float vTw;\n'+
+'vec3 h3(float n){return fract(sin(vec3(n*.1031,n*.1030,n*.0973))*vec3(43758.5453,22578.1459,19642.3490));}\n'+
+'vec3 shp(int k,float u,float i,vec3 h){\n'+
+'float TAU=6.2831853;\n'+
+'if(k==0){float y=1.-2.*u;float r=sqrt(max(0.,1.-y*y));float ph=i*2.399963;\n'+
+' return vec3(cos(ph)*r,y,sin(ph)*r)*(1.55+h.z*.25);}\n'+
+'if(k==1){float t=u*TAU;float p=2.,q=3.;float R=1.15;\n'+
+' float rr=R+.42*cos(q*t);\n'+
+' vec3 c=vec3(rr*cos(p*t),.42*sin(q*t),rr*sin(p*t));\n'+
+' return c+(h-.5)*.14;}\n'+
+'if(k==2){float s=h.x<.5?0.:3.14159;float t=u*TAU*3.;\n'+
+' float rung=step(.93,fract(u*60.));\n'+
+' vec3 a=vec3(cos(t+s)*.85,(u-.5)*3.4,sin(t+s)*.85);\n'+
+' vec3 b=vec3(cos(t)*.85*(1.-s/3.14159),(u-.5)*3.4,sin(t)*.85*(1.-s/3.14159));\n'+
+' return mix(a,b,rung)+(h-.5)*.08;}\n'+
+'if(k==3){float s=ceil(pow(uCount,.3334));float ix=mod(i,s);float iy=mod(floor(i/s),s);float iz=floor(i/(s*s));\n'+
+' return (vec3(ix,iy,iz)/s-.5)*3.6+(h-.5)*.05;}\n'+
+'if(k==4){float r=pow(u,.6)*2.4;float arm=floor(h.x*3.);\n'+
+' float an=arm*2.0944+r*2.1;\n'+
+' return vec3(cos(an)*r,(h.y-.5)*.22*(1.2-r*.3),sin(an)*r)+(h-.5)*.1;}\n'+
+'float g=ceil(sqrt(uCount));float gx=mod(i,g)/g-.5;float gz=floor(i/g)/g-.5;\n'+
+' return vec3(gx*5.2,sin(gx*9.+gz*6.)*.35,gz*5.2)+(h-.5)*.03;}\n'+
+'mat3 rotY(float a){float c=cos(a),s=sin(a);return mat3(c,0.,s,0.,1.,0.,-s,0.,c);}\n'+
+'mat3 rotX(float a){float c=cos(a),s=sin(a);return mat3(1.,0.,0.,0.,c,s,0.,-s,c);}\n'+
+'void main(){\n'+
+'float i=float(gl_VertexID);\n'+
+'float u=i/uCount;\n'+
+'vec3 h=h3(i);\n'+
+'int a=int(floor(uMorph));int b=min(a+1,5);\n'+
+'float f=smoothstep(.08,.92,fract(uMorph));\n'+
+'vec3 pa=shp(a,u,i,h);vec3 pb=shp(b,u,i,h);\n'+
+'vec3 pos=mix(pa,pb,f);\n'+
+'pos+=.05*sin(uT*(.5+h.x)+h.y*6.2831);\n'+
+'mat3 R=rotY(uT*.12+uM.x*1.1)*rotX(uM.y*.6+.18*sin(uT*.07));\n'+
+'pos=R*pos;\n'+
+'pos.z-=4.6;\n'+
+'gl_Position=uP*vec4(pos,1.);\n'+
+'float vz=max(.1,-pos.z);\n'+
+'gl_PointSize=clamp(uDPR*(34./vz)*(.5+h.z*.8),1.,4.);\n'+
+'vMix=clamp(u*1.15-.05+(h.y-.5)*.25+f*.15,0.,1.);\n'+
+'vTw=(.55+.45*sin(uT*(1.+h.y*2.)+h.z*40.))*clamp(1.7-vz*.15,.3,1.);\n'+
+'}';
+var FS='#version 300 es\nprecision mediump float;\n'+
+'in float vMix;in float vTw;out vec4 o;\n'+
+'void main(){vec2 c=gl_PointCoord-.5;float d=length(c);\n'+
+'float a=smoothstep(.5,.06,d);\n'+
+'vec3 col=mix(vec3(.55,.42,1.),vec3(.25,1.,.9),vMix);\n'+
+'o=vec4(col*a*vTw*.4,a*vTw*.4);}';
+ return {VS:VS,FS:FS}})();
+ var CON=(function(){var VS='#version 300 es\nvoid main(){vec2 p=vec2[](vec2(-1.,-1.),vec2(3.,-1.),vec2(-1.,3.))[gl_VertexID];gl_Position=vec4(p,0.,1.);}';
+var FS='#version 300 es\nprecision highp float;\n'+
+'uniform vec2 uR;uniform float uT;uniform vec2 uM;out vec4 o;\n'+
+'float hash(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}\n'+
+'void main(){\n'+
+'vec2 p=(gl_FragCoord.xy-.5*uR)/uR.y;\n'+
+'float t=uT*.14;\n'+
+'vec3 col=vec3(.010,.017,.045);\n'+
+'vec2 g=p*38.;\n'+
+'vec2 id=floor(g);\n'+
+'float h=hash(id);\n'+
+'if(h>.988){vec2 c=fract(g)-.5;float d=length(c);\n'+
+' float tw=.5+.5*sin(uT*(1.+h*3.)+h*40.);\n'+
+' col+=vec3(.75,.85,1.)*smoothstep(.14,.01,d)*tw*.8;}\n'+
+'vec3 vio=vec3(.486,.361,1.);\n'+
+'vec3 tea=vec3(.22,.91,.815);\n'+
+'float mx=(uM.x-.5);\n'+
+'for(int i=0;i<3;i++){\n'+
+' float fi=float(i);\n'+
+' float x=p.x*(2.0+fi*.55)+fi*13.7+mx*(.5+fi*.3);\n'+
+' float w=sin(x+t*(.55+fi*.21))+.6*sin(x*2.3-t*(.38+fi*.16))+.3*sin(x*4.7+t*.8);\n'+
+' float y=p.y+.58-fi*.30-.15*w;\n'+
+' float band=exp(-abs(y)*(5.5-fi*.8))*(.45+.55*sin(x*3.+t+fi*2.));\n'+
+' band=max(band,0.);\n'+
+' col+=mix(tea,vio,.30+.35*sin(fi*2.1+t*.3))*band*(.40+.13*fi);\n'+
+'}\n'+
+'col+=vio*exp(-abs(p.y+.95)*2.4)*.20;\n'+
+'col+=tea*exp(-length(p-vec2(.85,.62))*3.2)*.16;\n'+
+'col*=1.-.30*dot(p*.7,p*.7);\n'+
+'o=vec4(1.-exp(-col*1.55),1.);}';
+ return {VS:VS,FS:FS}})();
+ S.synapse=prog(HOME);S.helix=prog(SVC);S.aurora=prog(CON);
+ var NN=MOB?42000:150000;
+ gl.bindVertexArray(gl.createVertexArray());
+ addEventListener('resize',rs);rs();
+ function mm(x,y){mx=x/innerWidth;my=1-y/innerHeight}
+ addEventListener('mousemove',function(e){mm(e.clientX,e.clientY)},{passive:true});
+ addEventListener('touchmove',function(e){if(e.touches[0])mm(e.touches[0].clientX,e.touches[0].clientY)},{passive:true});
+ addEventListener('scroll',function(){tsp=scrollP();tmo=Math.min(5,tsp*5.999)},{passive:true});
+ var t0=performance.now();
+ (function loop(){
+  var t=(performance.now()-t0)/1000;
+  smx+=(mx-smx)*.06;smy+=(my-smy)*.06;sp+=(tsp-sp)*.05;mo+=(tmo-mo)*.045;
+  if(scene&&!document.hidden){var u=scene.u;gl.useProgram(scene.p);
+   if(scene===S.helix){
+    gl.enable(gl.BLEND);gl.blendFunc(gl.ONE,gl.ONE);gl.clearColor(.012,.02,.05,1);gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.uniform1f(u.uT,t);gl.uniform1f(u.uMorph,mo);gl.uniform2f(u.uM,smx-.5,1-smy-.5);
+    gl.uniformMatrix4fv(u.uP,false,persp(1.05,asp,.1,20));gl.uniform1f(u.uCount,NN);gl.uniform1f(u.uDPR,dpr);
+    gl.drawArrays(gl.POINTS,0,NN);
+   }else{
+    gl.disable(gl.BLEND);
+    gl.uniform2f(u.uR,cv.width,cv.height);gl.uniform1f(u.uT,t);gl.uniform2f(u.uM,smx,smy);
+    if(u.uS)gl.uniform1f(u.uS,cur==='blogs'?.45+sp*.3:sp);
+    gl.drawArrays(gl.TRIANGLES,0,3);
+   }}
+  requestAnimationFrame(loop)})();
+ if(S.synapse&&S.helix&&S.aurora)fb.style.display='none';
+}
+})();
+</script>
+<script>
+(function(){
+var VIEWS=['home','services','blogs','consultation'];
+var bar=document.getElementById('bar');
+function prog(){var m=document.documentElement.scrollHeight-innerHeight;bar.style.width=(m>0?scrollY/m*100:0)+'%'}
+addEventListener('scroll',prog,{passive:true});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.15});
+document.querySelectorAll('.panel,.sect').forEach(function(p){io.observe(p)});
+var current=null;
+function route(first){
+ var h=(location.hash||'#home').slice(1).split('/');var v=VIEWS.indexOf(h[0])>=0?h[0]:'home';var anchor=h[1];
+ if(v!==current){
+  VIEWS.forEach(function(n){document.getElementById('v-'+n).classList.toggle('on',n===v)});
+  document.querySelectorAll('.nr a').forEach(function(a){a.classList.toggle('on',a.dataset.v===v)});
+  document.body.setAttribute('data-view',v);
+  document.title=({home:'Synthara AI | AI Agents, Automation and Marketing for Business',services:'Services | Synthara AI',blogs:'Blogs | Synthara AI',consultation:'Book my consultation | Synthara AI'})[v];
+  scrollTo({top:0,behavior:'instant'});
+  if(window.__scene)window.__scene(v,first);
+  current=v;
+  setTimeout(function(){document.querySelectorAll('#v-'+v+' .panel,#v-'+v+' .sect').forEach(function(p){io.unobserve(p);io.observe(p)})},50);
+ }
+ if(anchor){setTimeout(function(){var el=document.getElementById(anchor);if(el)el.scrollIntoView({behavior:'smooth'})},120)}
+ else if(v===current&&!first){scrollTo({top:0,behavior:'smooth'})}
+ prog();
+}
+addEventListener('hashchange',function(){route(false)});
+route(true);
+
+document.getElementById('cform').addEventListener('submit',function(e){e.preventDefault();
+var g=function(id){return document.getElementById(id).value};
+var body='Name: '+encodeURIComponent(g('name'))+'%0D%0ACompany: '+encodeURIComponent(g('company'))+'%0D%0AEmail: '+encodeURIComponent(g('email'))+'%0D%0APhone/WhatsApp: '+encodeURIComponent(g('phone'))+'%0D%0AService: '+encodeURIComponent(g('service'))+'%0D%0A%0D%0AWhat to automate:%0D%0A'+encodeURIComponent(g('msg'));
+location.href='mailto:arabianzones@gmail.com?subject=Synthara%20AI%20consultation%20request%20from%20'+encodeURIComponent(g('name'))+'&body='+body;});
+})();
+</script>
+</body>
+</html>
