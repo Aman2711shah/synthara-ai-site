@@ -118,6 +118,7 @@ form.book button{cursor:pointer;border:1px solid transparent;border-radius:99px;
 <script type="importmap">{"imports":{"three":"./4-three.module.min.js"}}</script>
 <script type="module">
 import * as THREE from 'three';
+const MOB=innerWidth<700;
 const cv=document.getElementById('gl');
 let R;try{R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true})}catch(e){R=null}
 if(R){
@@ -126,7 +127,7 @@ R.setPixelRatio(Math.min(devicePixelRatio,MOB?1.25:2));
 const sc=new THREE.Scene();sc.fog=new THREE.FogExp2(0x04060f,.03);
 const cam=new THREE.PerspectiveCamera(55,1,.1,100);cam.position.z=9;
 // wave grid + glowing AI core
-const MOB=innerWidth<700;const GW=MOB?44:90,GH=MOB?30:60;
+const GW=MOB?44:90,GH=MOB?30:60;
 const gg=new THREE.PlaneGeometry(60,40,GW,GH);gg.rotateX(-Math.PI/2);
 const gm=new THREE.MeshBasicMaterial({color:0x7c5cff,wireframe:true,transparent:true,opacity:.28});
 const grid=new THREE.Mesh(gg,gm);grid.position.set(0,-3.2,-6);sc.add(grid);
@@ -139,8 +140,8 @@ const shell=new THREE.Mesh(new THREE.IcosahedronGeometry(2.7,1),new THREE.MeshBa
 const ring=new THREE.Mesh(new THREE.TorusGeometry(3.3,.014,8,160),new THREE.MeshBasicMaterial({color:0x38e8d0,transparent:true,opacity:.06}));ring.rotation.x=1.2;g.add(ring);
 // floating crystal shards
 const CN=MOB?14:34,crs=[],cg=[new THREE.OctahedronGeometry(.5,0),new THREE.IcosahedronGeometry(.45,0),new THREE.TetrahedronGeometry(.6,0)];
-for(let i=0;i<CN;i++){const c=new THREE.Mesh(cg[i%3],new THREE.MeshBasicMaterial({color:i%2?0x38e8d0:0x7c5cff,wireframe:true,transparent:true,opacity:.5}));
-const side=i%2?1:-1;c.position.set(side*(4+Math.random()*9),(Math.random()-.5)*9,-8+Math.random()*9);c.userData={r:Math.random()*.6+.2,f:Math.random()*6,s:.6+Math.random()*1.6};c.scale.setScalar(c.userData.s);sc.add(c);crs.push(c)}
+for(let i=0;i<CN;i++){const c=new THREE.Mesh(cg[i%3],new THREE.MeshBasicMaterial({color:i%2?0x38e8d0:0x7c5cff,wireframe:true,transparent:true,opacity:.4}));
+const side=i%2?1:-1;c.position.set(side*(4+Math.random()*9),(Math.random()-.5)*9,-8+Math.random()*9);c.userData={r:Math.random()*.6+.2,f:Math.random()*6,s:.45+Math.random()*1.1};c.scale.setScalar(c.userData.s);sc.add(c);crs.push(c)}
 function rs(){R.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}
 addEventListener('resize',rs);rs();
 let sp=0,tp=0,mx=0,my=0;
