@@ -29,7 +29,7 @@ main{position:relative;z-index:2}
 .panel{min-height:100vh;display:flex;align-items:center;padding:110px 8vw}
 .hero{justify-content:center;text-align:center}
 .hero .inner{position:relative;isolation:isolate;padding:30px 24px}
-.hero .inner:before{content:"";position:absolute;inset:0 -30px;z-index:-1;background:radial-gradient(ellipse at center,rgba(4,6,15,.96) 0%,rgba(4,6,15,.88) 55%,rgba(4,6,15,0) 100%);pointer-events:none}
+.hero .inner:before{content:"";position:absolute;inset:0 -30px;z-index:-1;background:radial-gradient(ellipse at center,rgba(4,6,15,.94) 0%,rgba(4,6,15,.85) 55%,rgba(4,6,15,0) 100%);pointer-events:none}
 .inner{max-width:880px;width:100%}
 .eyebrow{display:flex;align-items:center;gap:14px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mid);margin-bottom:24px}
 .hero .eyebrow{justify-content:center}
@@ -115,55 +115,89 @@ form.book button{cursor:pointer;border:1px solid transparent;border-radius:99px;
 <div class="pills"><a class="pill solid" href="consultation.html">Book my consultation</a></div></div></section>
 </main>
 <footer>&copy; 2026 Synthara AI</footer>
-<script type="importmap">{"imports":{"three":"./4-three.module.min.js"}}</script>
-<script type="module">
-import * as THREE from 'three';
-const MOB=innerWidth<700;
-const cv=document.getElementById('gl');
-let R;try{R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true})}catch(e){R=null}
-if(R){
-document.querySelector('.fallback').style.display='none';
-R.setPixelRatio(Math.min(devicePixelRatio,MOB?1.25:2));
-const sc=new THREE.Scene();sc.fog=new THREE.FogExp2(0x04060f,.03);
-const cam=new THREE.PerspectiveCamera(55,1,.1,100);cam.position.z=9;
-// wave grid + glowing AI core
-const GW=MOB?44:90,GH=MOB?30:60;
-const gg=new THREE.PlaneGeometry(60,40,GW,GH);gg.rotateX(-Math.PI/2);
-const gm=new THREE.MeshBasicMaterial({color:0x7c5cff,wireframe:true,transparent:true,opacity:.28});
-const grid=new THREE.Mesh(gg,gm);grid.position.set(0,-3.2,-6);sc.add(grid);
-const gp=gg.attributes.position,base=new Float32Array(gp.array);
-const grid2=new THREE.Mesh(gg,new THREE.MeshBasicMaterial({color:0x38e8d0,wireframe:true,transparent:true,opacity:.07}));grid2.position.set(0,-3.15,-6);sc.add(grid2);
-const g=new THREE.Group();g.position.set(7,.6,0);sc.add(g);
-const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1.5,.38,220,28,2,3),new THREE.MeshBasicMaterial({color:0x38e8d0,wireframe:true,transparent:true,opacity:.035}));g.add(knot);
-const inner=new THREE.Mesh(new THREE.IcosahedronGeometry(.8,2),new THREE.MeshBasicMaterial({color:0x7c5cff,wireframe:true,transparent:true,opacity:.06}));g.add(inner);
-const shell=new THREE.Mesh(new THREE.IcosahedronGeometry(2.7,1),new THREE.MeshBasicMaterial({color:0x7c5cff,wireframe:true,transparent:true,opacity:.02}));g.add(shell);
-const ring=new THREE.Mesh(new THREE.TorusGeometry(3.3,.014,8,160),new THREE.MeshBasicMaterial({color:0x38e8d0,transparent:true,opacity:.06}));ring.rotation.x=1.2;g.add(ring);
-// floating crystal shards
-const CN=MOB?14:34,crs=[],cg=[new THREE.OctahedronGeometry(.5,0),new THREE.IcosahedronGeometry(.45,0),new THREE.TetrahedronGeometry(.6,0)];
-for(let i=0;i<CN;i++){const c=new THREE.Mesh(cg[i%3],new THREE.MeshBasicMaterial({color:i%2?0x38e8d0:0x7c5cff,wireframe:true,transparent:true,opacity:.4}));
-const side=i%2?1:-1;c.position.set(side*(4+Math.random()*9),(Math.random()-.5)*9,-8+Math.random()*9);c.userData={r:Math.random()*.6+.2,f:Math.random()*6,s:.45+Math.random()*1.1};c.scale.setScalar(c.userData.s);sc.add(c);crs.push(c)}
-function rs(){R.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}
+<script>
+/* SYNAPSE - a living neural organism. Hand-written GLSL (WebGL2), no libraries.
+   Domain-warped fbm membranes, filament veins, synapse sparks, a breathing core.
+   Reacts to cursor (gravity well + bloom) and to scroll (the organism evolves). */
+(function(){
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var cv=document.getElementById('gl');
+var MOB=innerWidth<700;
+var gl=cv.getContext('webgl2',{antialias:false,alpha:false,depth:false,stencil:false,powerPreference:'high-performance'});
+if(!gl)return;
+var VS='#version 300 es\nvoid main(){vec2 p=vec2[](vec2(-1.,-1.),vec2(3.,-1.),vec2(-1.,3.))[gl_VertexID];gl_Position=vec4(p,0.,1.);}';
+var FS='#version 300 es\nprecision highp float;\n'+
+'uniform vec2 uR;uniform float uT;uniform vec2 uM;uniform float uS;out vec4 o;\n'+
+'#define OCT '+(MOB?4:6)+'\n'+
+'float hash(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}\n'+
+'float noise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);f=f*f*(3.-2.*f);'+
+'float a=hash(i),b=hash(i+vec2(1.,0.)),c=hash(i+vec2(0.,1.)),d=hash(i+vec2(1.,1.));'+
+'return mix(mix(a,b,f.x),mix(c,d,f.x),f.y);}\n'+
+'float fbm(vec2 p){float v=0.;float a=.5;mat2 m=mat2(1.6,1.2,-1.2,1.6);'+
+'for(int i=0;i<OCT;i++){v+=a*noise(p);p=m*p;a*=.55;}return v;}\n'+
+'void main(){\n'+
+'vec2 uv=(gl_FragCoord.xy-.5*uR)/uR.y;\n'+
+'vec2 mo=(uM-.5)*vec2(uR.x/uR.y,1.);\n'+
+'float t=uT*.05;\n'+
+'float zoom=1.7+uS*.9;\n'+
+'vec2 p=uv*zoom;\n'+
+'p.x+=.15*sin(t*.7);\n'+
+'vec2 dm=p-mo*zoom;\n'+
+'float well=exp(-dot(dm,dm)*1.8);\n'+
+'p-=normalize(dm+1e-4)*well*.4;\n'+
+'vec2 q=vec2(fbm(p+vec2(0.,t)),fbm(p+vec2(5.2,1.3)-t*.8));\n'+
+'vec2 r=vec2(fbm(p+(1.6+uS*1.4)*q+vec2(1.7,9.2)+.18*t),fbm(p+(1.6+uS*1.4)*q+vec2(8.3,2.8)-.14*t));\n'+
+'float f=fbm(p+(1.8+uS*1.6)*r);\n'+
+'vec3 vod=vec3(.012,.02,.055);\n'+
+'vec3 vio=vec3(.486,.361,1.);\n'+
+'vec3 tea=vec3(.22,.91,.815);\n'+
+'vec3 col=vod;\n'+
+'col=mix(col,vio*.6,smoothstep(.25,.95,f)*.85);\n'+
+'col=mix(col,tea*.55,clamp(dot(q,q)*.5,0.,1.)*smoothstep(.4,.9,r.y));\n'+
+'float ridge=abs(2.*f-1.);ridge=pow(1.-ridge,9.);\n'+
+'col+=mix(vio,tea,clamp(r.x,0.,1.))*ridge*(.4+.2*sin(uT*.5));\n'+
+'float sp=noise(p*14.+r*7.+t*2.2);sp=pow(sp,16.)*smoothstep(.35,.75,f);\n'+
+'col+=tea*sp*2.4;\n'+
+'float core=exp(-length(uv-vec2(.62,.08))*2.6);\n'+
+'col+=vio*core*(.28+.10*sin(uT*.6));\n'+
+'col+=mix(tea,vio,.5)*well*.5;\n'+
+'col*=1.-.35*dot(uv*.7,uv*.7);\n'+
+'col=1.-exp(-col*1.4);\n'+
+'o=vec4(col,1.);}';
+function sh(t,s){var h=gl.createShader(t);gl.shaderSource(h,s);gl.compileShader(h);
+if(!gl.getShaderParameter(h,gl.COMPILE_STATUS)){console.warn('shader:',gl.getShaderInfoLog(h));return null}return h}
+var vs=sh(gl.VERTEX_SHADER,VS),fs=sh(gl.FRAGMENT_SHADER,FS);
+if(!vs||!fs)return;
+var pr=gl.createProgram();gl.attachShader(pr,vs);gl.attachShader(pr,fs);gl.linkProgram(pr);
+if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){console.warn('link:',gl.getProgramInfoLog(pr));return}
+gl.useProgram(pr);
+var uR=gl.getUniformLocation(pr,'uR'),uT=gl.getUniformLocation(pr,'uT'),uM=gl.getUniformLocation(pr,'uM'),uS=gl.getUniformLocation(pr,'uS');
+gl.bindVertexArray(gl.createVertexArray());
+function rs(){var d=Math.min(devicePixelRatio||1,MOB?1.25:1.75);cv.width=Math.round(innerWidth*d);cv.height=Math.round(innerHeight*d);gl.viewport(0,0,cv.width,cv.height)}
 addEventListener('resize',rs);rs();
-let sp=0,tp=0,mx=0,my=0;
-addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
-const t0=performance.now();
-function loop(){const t=(performance.now()-t0)/1000;sp+=(tp-sp)*.06;
-const a=gp.array;for(let i=0;i<a.length;i+=3){const x=base[i],z=base[i+2];a[i+1]=Math.sin(x*.35+t*.9)*.55+Math.cos(z*.4+t*.7)*.45+Math.sin((x+z)*.2+t*.5)*.4}
-gp.needsUpdate=true;
-g.rotation.y=t*.2+sp*6.283+mx*.5;g.rotation.x=Math.sin(t*.3)*.25+my*.3;
-knot.rotation.z=t*.25;inner.rotation.y=-t*.7;inner.rotation.x=t*.4;shell.rotation.y=t*.1;ring.rotation.z=t*.4;
-g.position.y=.6+Math.sin(t*.8)*.15;
-const s=.38*(1+sp*.35);g.scale.setScalar(s);
-cam.position.set(Math.sin(sp*3)*1.5,1.2-sp*.8,9-sp*2.5);cam.lookAt(0,0,0);
-for(const c of crs){c.rotation.x=t*c.userData.r;c.rotation.y=t*c.userData.r*.7;c.position.y+=Math.sin(t+c.userData.f)*.003}
-R.render(sc,cam);requestAnimationFrame(loop)}
-loop();
-addEventListener('scroll',()=>{const m=document.documentElement.scrollHeight-innerHeight;tp=m>0?scrollY/m:0},{passive:true});
-}
-const bar=document.getElementById('bar');
-addEventListener('scroll',()=>{const m=document.documentElement.scrollHeight-innerHeight;bar.style.width=(m>0?scrollY/m*100:0)+'%'},{passive:true});
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.15});
-document.querySelectorAll('.panel,.sect').forEach(p=>io.observe(p));
+var mx=.5,my=.5,smx=.5,smy=.5,sp=0,tsp=0;
+function mm(x,y){mx=x/innerWidth;my=1-y/innerHeight}
+addEventListener('mousemove',function(e){mm(e.clientX,e.clientY)},{passive:true});
+addEventListener('touchmove',function(e){if(e.touches[0])mm(e.touches[0].clientX,e.touches[0].clientY)},{passive:true});
+addEventListener('scroll',function(){var m=document.documentElement.scrollHeight-innerHeight;tsp=m>0?scrollY/m:0},{passive:true});
+var t0=performance.now();
+(function loop(){
+var t=(performance.now()-t0)/1000;
+smx+=(mx-smx)*.06;smy+=(my-smy)*.06;sp+=(tsp-sp)*.05;
+gl.uniform2f(uR,cv.width,cv.height);
+gl.uniform1f(uT,t);
+gl.uniform2f(uM,smx,smy);
+gl.uniform1f(uS,sp);
+gl.drawArrays(gl.TRIANGLES,0,3);
+requestAnimationFrame(loop)})();
+document.querySelector('.fallback').style.display='none';
+})();
+</script>
+<script>
+var bar=document.getElementById('bar');
+addEventListener('scroll',function(){var m=document.documentElement.scrollHeight-innerHeight;bar.style.width=(m>0?scrollY/m*100:0)+'%'},{passive:true});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.15});
+document.querySelectorAll('.panel,.sect').forEach(function(p){io.observe(p)});
 </script>
 
 </body>
