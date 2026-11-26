@@ -29,7 +29,7 @@ main{position:relative;z-index:2}
 .panel{min-height:100vh;display:flex;align-items:center;padding:110px 8vw}
 .hero{justify-content:center;text-align:center}
 .hero .inner{position:relative;isolation:isolate;padding:30px 24px}
-.hero .inner:before{content:"";position:absolute;inset:0 -30px;z-index:-1;background:radial-gradient(ellipse at center,rgba(4,6,15,.96) 0%,rgba(4,6,15,.88) 55%,rgba(4,6,15,0) 100%);pointer-events:none}
+.hero .inner:before{content:"";position:absolute;inset:0 -30px;z-index:-1;background:radial-gradient(ellipse at center,rgba(4,6,15,.94) 0%,rgba(4,6,15,.85) 55%,rgba(4,6,15,0) 100%);pointer-events:none}
 .inner{max-width:880px;width:100%}
 .eyebrow{display:flex;align-items:center;gap:14px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mid);margin-bottom:24px}
 .hero .eyebrow{justify-content:center}
@@ -82,12 +82,12 @@ form.book button{cursor:pointer;border:1px solid transparent;border-radius:99px;
 .direct{margin-top:26px;color:var(--mid);font-size:.9rem;font-weight:300}
 .direct a{color:var(--b);text-decoration:none}
 @media(max-width:860px){.ov{grid-template-columns:1fr}form.book{grid-template-columns:1fr}}
-#gl{overflow:hidden}.dim{position:fixed;inset:0;z-index:1;pointer-events:none;background:rgba(4,6,15,.25)}
+.dim{position:fixed;inset:0;z-index:1;pointer-events:none;background:rgba(4,6,15,.30)}
 </style>
 </head>
 <body>
 <div class="fallback"></div>
-<div id="gl"></div>
+<canvas id="gl"></canvas>
 <div class="dim"></div>
 <div class="vig"></div>
 <div class="progress"><i id="bar"></i></div>
@@ -117,14 +117,79 @@ var g=function(id){return document.getElementById(id).value};
 var body='Name: '+encodeURIComponent(g('name'))+'%0D%0ACompany: '+encodeURIComponent(g('company'))+'%0D%0AEmail: '+encodeURIComponent(g('email'))+'%0D%0APhone/WhatsApp: '+encodeURIComponent(g('phone'))+'%0D%0AService: '+encodeURIComponent(g('service'))+'%0D%0A%0D%0AWhat to automate:%0D%0A'+encodeURIComponent(g('msg'));
 location.href='mailto:arabianzones@gmail.com?subject=Synthara%20AI%20consultation%20request%20from%20'+encodeURIComponent(g('name'))+'&body='+body;});
 </script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.halo.min.js"></script>
 <script>
-const m=innerWidth<700;if(!matchMedia('(prefers-reduced-motion: reduce)').matches){try{VANTA.HALO({el:'#gl',mouseControls:true,touchControls:true,gyroControls:false,minHeight:200,minWidth:200,baseColor:0x7c5cff,backgroundColor:0x04060f,amplitudeFactor:m?1.4:2.4,size:m?1.2:2,xOffset:0.0,yOffset:0.0});document.querySelector('.fallback').style.display='none'}catch(e){}}
-const bar=document.getElementById('bar');
-addEventListener('scroll',()=>{const m=document.documentElement.scrollHeight-innerHeight;bar.style.width=(m>0?scrollY/m*100:0)+'%'},{passive:true});
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.15});
-document.querySelectorAll('.panel,.sect').forEach(p=>io.observe(p));
+/* AURORA GATE - a cinematic night sky: layered silk aurora curtains drifting over a
+   twinkling starfield, with a soft horizon glow. Hand-written GLSL (WebGL2), no
+   libraries. The cursor gently bends the curtains; the scene stays calm so the
+   form keeps full focus. */
+(function(){
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var cv=document.getElementById('gl');
+var MOB=innerWidth<700;
+var gl=cv.getContext('webgl2',{antialias:false,alpha:false,depth:false,stencil:false,powerPreference:'high-performance'});
+if(!gl)return;
+var VS='#version 300 es\nvoid main(){vec2 p=vec2[](vec2(-1.,-1.),vec2(3.,-1.),vec2(-1.,3.))[gl_VertexID];gl_Position=vec4(p,0.,1.);}';
+var FS='#version 300 es\nprecision highp float;\n'+
+'uniform vec2 uR;uniform float uT;uniform vec2 uM;out vec4 o;\n'+
+'float hash(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}\n'+
+'void main(){\n'+
+'vec2 p=(gl_FragCoord.xy-.5*uR)/uR.y;\n'+
+'float t=uT*.14;\n'+
+'vec3 col=vec3(.010,.017,.045);\n'+
+'vec2 g=p*38.;\n'+
+'vec2 id=floor(g);\n'+
+'float h=hash(id);\n'+
+'if(h>.988){vec2 c=fract(g)-.5;float d=length(c);\n'+
+' float tw=.5+.5*sin(uT*(1.+h*3.)+h*40.);\n'+
+' col+=vec3(.75,.85,1.)*smoothstep(.14,.01,d)*tw*.8;}\n'+
+'vec3 vio=vec3(.486,.361,1.);\n'+
+'vec3 tea=vec3(.22,.91,.815);\n'+
+'float mx=(uM.x-.5);\n'+
+'for(int i=0;i<3;i++){\n'+
+' float fi=float(i);\n'+
+' float x=p.x*(2.0+fi*.55)+fi*13.7+mx*(.5+fi*.3);\n'+
+' float w=sin(x+t*(.55+fi*.21))+.6*sin(x*2.3-t*(.38+fi*.16))+.3*sin(x*4.7+t*.8);\n'+
+' float y=p.y+.58-fi*.30-.15*w;\n'+
+' float band=exp(-abs(y)*(5.5-fi*.8))*(.45+.55*sin(x*3.+t+fi*2.));\n'+
+' band=max(band,0.);\n'+
+' col+=mix(tea,vio,.30+.35*sin(fi*2.1+t*.3))*band*(.40+.13*fi);\n'+
+'}\n'+
+'col+=vio*exp(-abs(p.y+.95)*2.4)*.20;\n'+
+'col+=tea*exp(-length(p-vec2(.85,.62))*3.2)*.16;\n'+
+'col*=1.-.30*dot(p*.7,p*.7);\n'+
+'o=vec4(1.-exp(-col*1.55),1.);}';
+function sh(t,s){var h=gl.createShader(t);gl.shaderSource(h,s);gl.compileShader(h);
+if(!gl.getShaderParameter(h,gl.COMPILE_STATUS)){console.warn('shader:',gl.getShaderInfoLog(h));return null}return h}
+var vs=sh(gl.VERTEX_SHADER,VS),fs=sh(gl.FRAGMENT_SHADER,FS);
+if(!vs||!fs)return;
+var pr=gl.createProgram();gl.attachShader(pr,vs);gl.attachShader(pr,fs);gl.linkProgram(pr);
+if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){console.warn('link:',gl.getProgramInfoLog(pr));return}
+gl.useProgram(pr);
+gl.bindVertexArray(gl.createVertexArray());
+var uR=gl.getUniformLocation(pr,'uR'),uT=gl.getUniformLocation(pr,'uT'),uM=gl.getUniformLocation(pr,'uM');
+function rs(){var d=Math.min(devicePixelRatio||1,MOB?1.25:1.75);cv.width=Math.round(innerWidth*d);cv.height=Math.round(innerHeight*d);gl.viewport(0,0,cv.width,cv.height)}
+addEventListener('resize',rs);rs();
+var mx=.5,my=.5,smx=.5,smy=.5;
+function mfn(x,y){mx=x/innerWidth;my=1-y/innerHeight}
+addEventListener('mousemove',function(e){mfn(e.clientX,e.clientY)},{passive:true});
+addEventListener('touchmove',function(e){if(e.touches[0])mfn(e.touches[0].clientX,e.touches[0].clientY)},{passive:true});
+var t0=performance.now();
+(function loop(){
+var t=(performance.now()-t0)/1000;
+smx+=(mx-smx)*.05;smy+=(my-smy)*.05;
+gl.uniform2f(uR,cv.width,cv.height);
+gl.uniform1f(uT,t);
+gl.uniform2f(uM,smx,smy);
+gl.drawArrays(gl.TRIANGLES,0,3);
+requestAnimationFrame(loop)})();
+document.querySelector('.fallback').style.display='none';
+})();
+</script>
+<script>
+var bar=document.getElementById('bar');
+addEventListener('scroll',function(){var m=document.documentElement.scrollHeight-innerHeight;bar.style.width=(m>0?scrollY/m*100:0)+'%'},{passive:true});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.15});
+document.querySelectorAll('.panel,.sect').forEach(function(p){io.observe(p)});
 </script>
 
 </body>
