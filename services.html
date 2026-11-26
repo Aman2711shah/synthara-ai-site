@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Services and Packages | Synthara AI</title>
+<meta name="description" content="Synthara AI builds chatbots, process automation, AI calling agents, email AI agents, WhatsApp and email marketing, and AI avatar videos for companies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--void:#04060f;--a:#7c5cff;--b:#38e8d0;--hi:#f2f5fb;--mid:#9aa8c2;--low:#5a6783;--line:rgba(154,168,194,.18);--ease:cubic-bezier(.16,1,.3,1)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--hi);font-family:"Space Grotesk",system-ui,sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+#gl{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block}
+.fallback{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 50% 40% at 50% 45%,rgba(124,92,255,.22),transparent 70%),var(--void)}
+.vig{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 120% 100% at 50% 50%,transparent 40%,rgba(4,6,15,.8) 100%)}
+.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:60}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--a),var(--b))}
+nav{position:fixed;top:2px;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:22px 44px}
+.brand{font-family:Syne,sans-serif;font-weight:700;font-size:15px;letter-spacing:.22em;text-transform:uppercase;color:var(--hi);text-decoration:none}
+.brand span{color:var(--b)}
+.nr{display:flex;align-items:center;gap:26px}
+.nr a{color:var(--mid);text-decoration:none;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.nr a:hover{color:var(--hi)}
+.nr .cta{border:1px solid var(--line);padding:9px 20px;border-radius:99px;color:var(--hi)}
+main{position:relative;z-index:2}
+.panel{min-height:100vh;display:flex;align-items:center;padding:110px 8vw}
+.hero{justify-content:center;text-align:center}
+.hero .inner{position:relative;isolation:isolate;padding:30px 24px}
+.hero .inner:before{content:"";position:absolute;inset:0 -30px;z-index:-1;background:radial-gradient(ellipse at center,rgba(4,6,15,.96) 0%,rgba(4,6,15,.88) 55%,rgba(4,6,15,0) 100%);pointer-events:none}
+.inner{max-width:880px;width:100%}
+.eyebrow{display:flex;align-items:center;gap:14px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mid);margin-bottom:24px}
+.hero .eyebrow{justify-content:center}
+.eyebrow:before{content:"";width:46px;height:1px;background:var(--b)}
+h1,h2{font-family:Syne,sans-serif;font-weight:800;text-transform:uppercase;line-height:1.04}
+h1{font-size:clamp(1.9rem,5.4vw,4.6rem)}
+h2{font-size:clamp(1.5rem,4vw,3.2rem);margin-bottom:20px}
+em{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;text-transform:none;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.1em}
+.lede{max-width:600px;color:var(--mid);font-size:1.1rem;font-weight:300}
+.hero .lede{margin:24px auto 0}
+.pills{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+.hero .pills{justify-content:center}
+.pill{display:inline-block;padding:14px 28px;border-radius:99px;border:1px solid var(--line);color:var(--hi);text-decoration:none;font-size:12px;letter-spacing:.16em;text-transform:uppercase;transition:transform .3s;background:rgba(4,6,15,.4)}
+.pill.solid{background:linear-gradient(90deg,var(--a),var(--b));color:#06091a;border-color:transparent;font-weight:500}
+.pill:hover{transform:translateY(-2px)}
+.right{justify-content:flex-end}.right .inner,.left .inner{max-width:560px}
+.cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--low)}
+.list{margin-top:24px;list-style:none;border-top:1px solid var(--line)}
+.list li{padding:11px 0;border-bottom:1px solid var(--line);color:var(--mid);font-size:.95rem}
+.fade{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.in .fade{opacity:1;transform:none}
+.wide{display:block;padding:110px 6vw}
+.wide .inner{max-width:1180px;margin:0 auto}
+.pk{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:10px 0 56px}
+.card{border:1px solid var(--line);border-radius:18px;padding:26px;background:rgba(8,12,28,.72);backdrop-filter:blur(8px);display:flex;flex-direction:column}
+.card.hot{border-color:rgba(124,92,255,.7);box-shadow:0 0 40px rgba(124,92,255,.18)}
+.card h4{font-family:Syne,sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--b);margin-bottom:10px}
+.price{font-family:Syne,sans-serif;font-weight:800;font-size:1.9rem;line-height:1.1}
+.price small{display:block;font-family:"Space Grotesk",sans-serif;font-weight:300;font-size:.82rem;color:var(--mid);margin-top:4px}
+.card ul{list-style:none;margin-top:16px;color:var(--mid);font-size:.92rem}
+.card li{padding:6px 0 6px 18px;position:relative}
+.card li:before{content:"";position:absolute;left:0;top:14px;width:8px;height:1px;background:var(--b)}
+.sect h3{font-family:Syne,sans-serif;font-size:1.3rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.sect p.s{color:var(--mid);margin-bottom:18px;max-width:640px;font-weight:300}
+.note{color:var(--low);font-size:.82rem;max-width:760px;margin-top:10px}
+footer{position:relative;z-index:2;text-align:center;padding:30px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--low)}
+@media(max-width:860px){nav{padding:16px 20px}.nr a:not(.cta){display:none}.pk{grid-template-columns:1fr}.panel{padding:100px 6vw}.right{justify-content:flex-start}}
+
+.ov{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+.ov .card:hover{border-color:rgba(56,232,208,.5)}
+.ov .card h4{color:var(--hi)}
+.ov .card p{color:var(--mid);font-size:.9rem;font-weight:300;margin-top:6px}
+form.book{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px;max-width:760px}
+form.book .full{grid-column:1/-1}
+form.book label{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);margin-bottom:6px}
+form.book input,form.book select,form.book textarea{width:100%;background:rgba(8,12,28,.72);border:1px solid var(--line);border-radius:10px;color:var(--hi);padding:13px 14px;font-family:inherit;font-size:.95rem}
+form.book input:focus,form.book select:focus,form.book textarea:focus{outline:none;border-color:var(--b)}
+form.book textarea{min-height:110px;resize:vertical}
+form.book button{cursor:pointer;border:1px solid transparent;border-radius:99px;padding:15px 30px;background:linear-gradient(90deg,var(--a),var(--b));color:#06091a;font-family:inherit;font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.direct{margin-top:26px;color:var(--mid);font-size:.9rem;font-weight:300}
+.direct a{color:var(--b);text-decoration:none}
+@media(max-width:860px){.ov{grid-template-columns:1fr}form.book{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="fallback"></div>
+<canvas id="gl"></canvas>
+<div class="vig"></div>
+<div class="progress"><i id="bar"></i></div>
+<nav><a class="brand" href="index.html">Synthara<span>.ai</span></a><div class="nr"><a href="index.html">Home</a><span style="color:var(--hi);font-size:13px;letter-spacing:.08em;text-transform:uppercase">Services</span><a class="cta" href="consultation.html">Book my consultation</a></div></nav>
+<main id="top">
+<section class="panel hero in" style="min-height:60vh"><div class="inner"><div class="eyebrow">Services and packages</div>
+<h1>Everything we <em>build</em></h1>
+<p class="lede fade">Six AI services with clear, market-rate packages. Scroll for details, or jump straight to a consultation.</p>
+<div class="pills fade"><a class="pill solid" href="consultation.html">Book my consultation</a><a class="pill" href="#agents">Browse services</a></div></div></section>
+<section class="panel left" id="voice" id="agents"><div class="inner"><div class="eyebrow">01 / Agents</div>
+<h2>Bots that <em>answer</em> and sell</h2>
+<p class="lede">Website, WhatsApp and Instagram chatbots trained on your own services and FAQs. They qualify leads, book meetings and hand over to your team when needed.</p>
+<ul class="list"><li>Lead capture and qualification, 24/7</li><li>Multi-language replies</li><li>CRM and calendar connection</li></ul></div></section>
+
+<section class="panel right" id="inbox"><div class="inner"><div class="eyebrow">02 / Voice</div>
+<h2>AI <em>calling</em> agents</h2>
+<p class="lede">Outbound cold calling and inbound answering with a natural voice. The agent follows your script, handles objections, and logs every call with a summary.</p>
+<ul class="list"><li>Outbound campaigns and follow-ups</li><li>Appointment booking during the call</li><li>Call recordings, transcripts and outcomes</li></ul></div></section>
+
+<section class="panel left" id="workflow"><div class="inner"><div class="eyebrow">03 / Inbox</div>
+<h2>Email <em>AI agent</em></h2>
+<p class="lede">An agent that reads incoming mail, drafts replies in your voice, sorts requests and follows up on its own, with approval rules you control.</p>
+<ul class="list"><li>Triage, tagging and routing</li><li>Draft or auto-send, your choice</li><li>Automatic follow-up sequences</li></ul></div></section>
+
+<section class="panel right" id="reach"><div class="inner"><div class="eyebrow">04 / Workflow</div>
+<h2>Automate the <em>process</em></h2>
+<p class="lede">We map the manual steps in your operations and connect your tools so data moves without copy and paste: invoices, onboarding, reporting, approvals.</p>
+<ul class="list"><li>Workflow audit and design</li><li>Integrations with your existing tools</li><li>Monitoring and fixes after launch</li></ul></div></section>
+
+<section class="panel left" id="video"><div class="inner"><div class="eyebrow">05 / Reach</div>
+<h2>WhatsApp and email <em>marketing</em></h2>
+<p class="lede">Campaigns, broadcasts and drip sequences with AI-written copy, audience segments and clear reporting on opens, replies and bookings.</p>
+<ul class="list"><li>Segmented broadcasts and drip flows</li><li>AI copy with your approval</li><li>Monthly performance report</li></ul></div></section>
+
+<section class="panel right"><div class="inner"><div class="eyebrow">06 / Video</div>
+<h2>AI <em>avatar</em> videos</h2>
+<p class="lede">Talking-presenter videos for ads, explainers and social posts, in multiple languages, without a camera crew or studio.</p>
+<ul class="list"><li>Script, avatar, voice and captions</li><li>Vertical and horizontal formats</li><li>Fast turnaround</li></ul></div></section>
+
+<section class="panel wide sect" id="packages"><div class="inner">
+<div class="eyebrow">Packages</div>
+<h2>Clear pricing, <em>no surprises</em></h2>
+<p class="lede" style="margin-bottom:34px">Indicative market-rate prices in USD. Final quotes depend on scope and volume.</p>
+
+<h3>AI chatbots</h3><p class="s">WhatsApp, website and Instagram.</p>
+<div class="pk">
+<div class="card"><h4>Starter</h4><div class="price">$499<small>setup + $99/month</small></div><ul><li>1 channel</li><li>Up to 50 FAQs</li><li>Lead capture to email</li></ul></div>
+<div class="card hot"><h4>Growth</h4><div class="price">$1,499<small>setup + $249/month</small></div><ul><li>3 channels</li><li>Booking and CRM link</li><li>Human handover</li></ul></div>
+<div class="card"><h4>Custom</h4><div class="price">From $4,000<small>setup, quoted per project</small></div><ul><li>Custom integrations</li><li>Multi-language</li><li>Analytics dashboard</li></ul></div></div>
+
+<h3>Process automation</h3><p class="s">Priced by the number of workflows.</p>
+<div class="pk">
+<div class="card"><h4>Starter</h4><div class="price">$750<small>one-time</small></div><ul><li>1 to 2 workflows</li><li>Up to 3 tools connected</li><li>30-day support</li></ul></div>
+<div class="card hot"><h4>Business</h4><div class="price">$2,500<small>one-time</small></div><ul><li>Up to 6 workflows</li><li>Reporting automation</li><li>60-day support</li></ul></div>
+<div class="card"><h4>Enterprise</h4><div class="price">From $6,000<small>quoted per project</small></div><ul><li>Department-wide automation</li><li>Custom AI steps</li><li>Ongoing retainer option</li></ul></div></div>
+
+<h3>AI calling agent</h3><p class="s">Outbound and inbound voice agents. Call minutes are billed at cost by the voice platform.</p>
+<div class="pk">
+<div class="card"><h4>Pilot</h4><div class="price">$1,500<small>setup + usage about $0.15 to $0.25/min</small></div><ul><li>1 script, 1 campaign</li><li>Call logs and summaries</li><li>2-week test run</li></ul></div>
+<div class="card hot"><h4>Pro</h4><div class="price">$3,500<small>setup + $499/month</small></div><ul><li>Multiple scripts</li><li>Booking and CRM sync</li><li>Weekly tuning</li></ul></div>
+<div class="card"><h4>Scale</h4><div class="price">From $7,500<small>setup, quoted</small></div><ul><li>High-volume campaigns</li><li>Multi-language voices</li><li>Dedicated manager</li></ul></div></div>
+
+<h3>Email AI agent</h3><p class="s">Inbox triage, drafting and follow-ups.</p>
+<div class="pk">
+<div class="card"><h4>Starter</h4><div class="price">$799<small>setup + $149/month</small></div><ul><li>1 inbox</li><li>Drafts for approval</li><li>Smart tagging</li></ul></div>
+<div class="card hot"><h4>Pro</h4><div class="price">$1,999<small>setup + $299/month</small></div><ul><li>Up to 5 inboxes</li><li>Auto-replies with rules</li><li>Follow-up sequences</li></ul></div>
+<div class="card"><h4>Team</h4><div class="price">From $4,500<small>setup, quoted</small></div><ul><li>Shared team inboxes</li><li>CRM and ticket sync</li><li>Custom approval flows</li></ul></div></div>
+
+<h3>WhatsApp and email marketing</h3><p class="s">Monthly management. WhatsApp message fees and email platform costs are separate.</p>
+<div class="pk">
+<div class="card"><h4>Starter</h4><div class="price">$399<small>per month</small></div><ul><li>2 campaigns a month</li><li>1 audience segment</li><li>Monthly report</li></ul></div>
+<div class="card hot"><h4>Growth</h4><div class="price">$899<small>per month</small></div><ul><li>6 campaigns a month</li><li>Drip sequences</li><li>A/B tested copy</li></ul></div>
+<div class="card"><h4>Scale</h4><div class="price">$1,800<small>per month</small></div><ul><li>Unlimited campaigns</li><li>Advanced segments</li><li>Weekly strategy call</li></ul></div></div>
+
+<h3>AI avatar videos</h3><p class="s">Up to 60 seconds each, with script, voice and captions.</p>
+<div class="pk">
+<div class="card"><h4>Single</h4><div class="price">$149<small>per video</small></div><ul><li>1 avatar, 1 language</li><li>1 revision</li><li>3-day delivery</li></ul></div>
+<div class="card hot"><h4>Monthly 5</h4><div class="price">$599<small>per month, 5 videos</small></div><ul><li>Brand-matched avatar</li><li>2 languages</li><li>2 revisions each</li></ul></div>
+<div class="card"><h4>Monthly 15</h4><div class="price">$1,490<small>per month, 15 videos</small></div><ul><li>Custom avatar</li><li>Multi-language</li><li>Priority delivery</li></ul></div></div>
+<p class="note">All prices are indicative starting rates and may change with scope, volume and third-party platform costs. Taxes extra.</p>
+</div></section>
+</main>
+<footer>&copy; 2026 Synthara AI</footer>
+<script type="importmap">{"imports":{"three":"./4-three.module.min.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+const cv=document.getElementById('gl');
+let R;try{R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true})}catch(e){R=null}
+if(R){
+document.querySelector('.fallback').style.display='none';
+R.setPixelRatio(Math.min(devicePixelRatio,2));
+const sc=new THREE.Scene();sc.fog=new THREE.FogExp2(0x04060f,.03);
+const cam=new THREE.PerspectiveCamera(55,1,.1,100);cam.position.z=9;
+// wave grid + glowing AI core
+const GW=90,GH=60;
+const gg=new THREE.PlaneGeometry(60,40,GW,GH);gg.rotateX(-Math.PI/2);
+const gm=new THREE.MeshBasicMaterial({color:0x7c5cff,wireframe:true,transparent:true,opacity:.28});
+const grid=new THREE.Mesh(gg,gm);grid.position.set(0,-3.2,-6);sc.add(grid);
+const gp=gg.attributes.position,base=new Float32Array(gp.array);
+const grid2=new THREE.Mesh(gg,new THREE.MeshBasicMaterial({color:0x38e8d0,wireframe:true,transparent:true,opacity:.07}));grid2.position.set(0,-3.15,-6);sc.add(grid2);
+const g=new THREE.Group();g.position.set(7,.6,0);sc.add(g);
+const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1.5,.38,220,28,2,3),new THREE.MeshBasicMaterial({color:0x38e8d0,wireframe:true,transparent:true,opacity:.035}));g.add(knot);
+const inner=new THREE.Mesh(new THREE.IcosahedronGeometry(.8,2),new THREE.MeshBasicMaterial({color:0x7c5cff,wireframe:true,transparent:true,opacity:.06}));g.add(inner);
+const shell=new THREE.Mesh(new THREE.IcosahedronGeometry(2.7,1),new THREE.MeshBasicMaterial({color:0x7c5cff,wireframe:true,transparent:true,opacity:.02}));g.add(shell);
+const ring=new THREE.Mesh(new THREE.TorusGeometry(3.3,.014,8,160),new THREE.MeshBasicMaterial({color:0x38e8d0,transparent:true,opacity:.06}));ring.rotation.x=1.2;g.add(ring);
+function rs(){R.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}
+addEventListener('resize',rs);rs();
+let sp=0,tp=0,mx=0,my=0;
+addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+const t0=performance.now();
+function loop(){const t=(performance.now()-t0)/1000;sp+=(tp-sp)*.06;
+const a=gp.array;for(let i=0;i<a.length;i+=3){const x=base[i],z=base[i+2];a[i+1]=Math.sin(x*.35+t*.9)*.55+Math.cos(z*.4+t*.7)*.45+Math.sin((x+z)*.2+t*.5)*.4}
+gp.needsUpdate=true;
+g.rotation.y=t*.2+sp*6.283+mx*.5;g.rotation.x=Math.sin(t*.3)*.25+my*.3;
+knot.rotation.z=t*.25;inner.rotation.y=-t*.7;inner.rotation.x=t*.4;shell.rotation.y=t*.1;ring.rotation.z=t*.4;
+g.position.y=.6+Math.sin(t*.8)*.15;
+const s=.38*(1+sp*.35);g.scale.setScalar(s);
+cam.position.set(Math.sin(sp*3)*1.5,1.2-sp*.8,9-sp*2.5);cam.lookAt(0,0,0);
+R.render(sc,cam);requestAnimationFrame(loop)}
+loop();
+addEventListener('scroll',()=>{const m=document.documentElement.scrollHeight-innerHeight;tp=m>0?scrollY/m:0},{passive:true});
+}
+const bar=document.getElementById('bar');
+addEventListener('scroll',()=>{const m=document.documentElement.scrollHeight-innerHeight;bar.style.width=(m>0?scrollY/m*100:0)+'%'},{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.15});
+document.querySelectorAll('.panel,.sect').forEach(p=>io.observe(p));
+</script>
+
+</body>
+</html>
