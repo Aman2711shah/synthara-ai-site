@@ -176,10 +176,10 @@ const grid=new THREE.Mesh(gg,gm);grid.position.set(0,-3.2,-6);sc.add(grid);
 const gp=gg.attributes.position,base=new Float32Array(gp.array);
 const grid2=new THREE.Mesh(gg,new THREE.MeshBasicMaterial({color:0x38e8d0,wireframe:true,transparent:true,opacity:.07}));grid2.position.set(0,-3.15,-6);sc.add(grid2);
 const g=new THREE.Group();g.position.set(0,.6,0);sc.add(g);
-const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1.5,.38,220,28,2,3),new THREE.MeshBasicMaterial({color:0x38e8d0,wireframe:true,transparent:true,opacity:.55}));g.add(knot);
-const inner=new THREE.Mesh(new THREE.IcosahedronGeometry(.8,2),new THREE.MeshBasicMaterial({color:0x7c5cff,wireframe:true,transparent:true,opacity:.8}));g.add(inner);
-const shell=new THREE.Mesh(new THREE.IcosahedronGeometry(2.7,1),new THREE.MeshBasicMaterial({color:0x7c5cff,wireframe:true,transparent:true,opacity:.12}));g.add(shell);
-const ring=new THREE.Mesh(new THREE.TorusGeometry(3.3,.014,8,160),new THREE.MeshBasicMaterial({color:0x38e8d0,transparent:true,opacity:.5}));ring.rotation.x=1.2;g.add(ring);
+const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1.5,.38,220,28,2,3),new THREE.MeshBasicMaterial({color:0x38e8d0,wireframe:true,transparent:true,opacity:.12}));g.add(knot);
+const inner=new THREE.Mesh(new THREE.IcosahedronGeometry(.8,2),new THREE.MeshBasicMaterial({color:0x7c5cff,wireframe:true,transparent:true,opacity:.18}));g.add(inner);
+const shell=new THREE.Mesh(new THREE.IcosahedronGeometry(2.7,1),new THREE.MeshBasicMaterial({color:0x7c5cff,wireframe:true,transparent:true,opacity:.05}));g.add(shell);
+const ring=new THREE.Mesh(new THREE.TorusGeometry(3.3,.014,8,160),new THREE.MeshBasicMaterial({color:0x38e8d0,transparent:true,opacity:.14}));ring.rotation.x=1.2;g.add(ring);
 function rs(){R.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}
 addEventListener('resize',rs);rs();
 let sp=0,tp=0,mx=0,my=0;
