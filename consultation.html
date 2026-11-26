@@ -82,11 +82,13 @@ form.book button{cursor:pointer;border:1px solid transparent;border-radius:99px;
 .direct{margin-top:26px;color:var(--mid);font-size:.9rem;font-weight:300}
 .direct a{color:var(--b);text-decoration:none}
 @media(max-width:860px){.ov{grid-template-columns:1fr}form.book{grid-template-columns:1fr}}
+#gl{overflow:hidden}.dim{position:fixed;inset:0;z-index:1;pointer-events:none;background:rgba(4,6,15,.25)}
 </style>
 </head>
 <body>
 <div class="fallback"></div>
-<canvas id="gl"></canvas>
+<div id="gl"></div>
+<div class="dim"></div>
 <div class="vig"></div>
 <div class="progress"><i id="bar"></i></div>
 <nav><a class="brand" href="index.html">Synthara<span>.ai</span></a><div class="nr"><a href="index.html">Home</a><a href="services.html">Services</a><span class="cta" style="color:var(--hi)">Book my consultation</span></div></nav>
@@ -115,45 +117,10 @@ var g=function(id){return document.getElementById(id).value};
 var body='Name: '+encodeURIComponent(g('name'))+'%0D%0ACompany: '+encodeURIComponent(g('company'))+'%0D%0AEmail: '+encodeURIComponent(g('email'))+'%0D%0APhone/WhatsApp: '+encodeURIComponent(g('phone'))+'%0D%0AService: '+encodeURIComponent(g('service'))+'%0D%0A%0D%0AWhat to automate:%0D%0A'+encodeURIComponent(g('msg'));
 location.href='mailto:arabianzones@gmail.com?subject=Synthara%20AI%20consultation%20request%20from%20'+encodeURIComponent(g('name'))+'&body='+body;});
 </script>
-<script type="importmap">{"imports":{"three":"./4-three.module.min.js"}}</script>
-<script type="module">
-import * as THREE from 'three';
-const cv=document.getElementById('gl');
-let R;try{R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true})}catch(e){R=null}
-if(R){
-document.querySelector('.fallback').style.display='none';
-R.setPixelRatio(Math.min(devicePixelRatio,2));
-const sc=new THREE.Scene();sc.fog=new THREE.FogExp2(0x04060f,.03);
-const cam=new THREE.PerspectiveCamera(55,1,.1,100);cam.position.z=9;
-// wave grid + glowing AI core
-const GW=90,GH=60;
-const gg=new THREE.PlaneGeometry(60,40,GW,GH);gg.rotateX(-Math.PI/2);
-const gm=new THREE.MeshBasicMaterial({color:0x7c5cff,wireframe:true,transparent:true,opacity:.28});
-const grid=new THREE.Mesh(gg,gm);grid.position.set(0,-3.2,-6);sc.add(grid);
-const gp=gg.attributes.position,base=new Float32Array(gp.array);
-const grid2=new THREE.Mesh(gg,new THREE.MeshBasicMaterial({color:0x38e8d0,wireframe:true,transparent:true,opacity:.07}));grid2.position.set(0,-3.15,-6);sc.add(grid2);
-const g=new THREE.Group();g.position.set(7,.6,0);sc.add(g);
-const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1.5,.38,220,28,2,3),new THREE.MeshBasicMaterial({color:0x38e8d0,wireframe:true,transparent:true,opacity:.035}));g.add(knot);
-const inner=new THREE.Mesh(new THREE.IcosahedronGeometry(.8,2),new THREE.MeshBasicMaterial({color:0x7c5cff,wireframe:true,transparent:true,opacity:.06}));g.add(inner);
-const shell=new THREE.Mesh(new THREE.IcosahedronGeometry(2.7,1),new THREE.MeshBasicMaterial({color:0x7c5cff,wireframe:true,transparent:true,opacity:.02}));g.add(shell);
-const ring=new THREE.Mesh(new THREE.TorusGeometry(3.3,.014,8,160),new THREE.MeshBasicMaterial({color:0x38e8d0,transparent:true,opacity:.06}));ring.rotation.x=1.2;g.add(ring);
-function rs(){R.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}
-addEventListener('resize',rs);rs();
-let sp=0,tp=0,mx=0,my=0;
-addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
-const t0=performance.now();
-function loop(){const t=(performance.now()-t0)/1000;sp+=(tp-sp)*.06;
-const a=gp.array;for(let i=0;i<a.length;i+=3){const x=base[i],z=base[i+2];a[i+1]=Math.sin(x*.35+t*.9)*.55+Math.cos(z*.4+t*.7)*.45+Math.sin((x+z)*.2+t*.5)*.4}
-gp.needsUpdate=true;
-g.rotation.y=t*.2+sp*6.283+mx*.5;g.rotation.x=Math.sin(t*.3)*.25+my*.3;
-knot.rotation.z=t*.25;inner.rotation.y=-t*.7;inner.rotation.x=t*.4;shell.rotation.y=t*.1;ring.rotation.z=t*.4;
-g.position.y=.6+Math.sin(t*.8)*.15;
-const s=.38*(1+sp*.35);g.scale.setScalar(s);
-cam.position.set(Math.sin(sp*3)*1.5,1.2-sp*.8,9-sp*2.5);cam.lookAt(0,0,0);
-R.render(sc,cam);requestAnimationFrame(loop)}
-loop();
-addEventListener('scroll',()=>{const m=document.documentElement.scrollHeight-innerHeight;tp=m>0?scrollY/m:0},{passive:true});
-}
+<script src="https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.halo.min.js"></script>
+<script>
+const m=innerWidth<700;if(!matchMedia('(prefers-reduced-motion: reduce)').matches){try{VANTA.HALO({el:'#gl',mouseControls:true,touchControls:true,gyroControls:false,minHeight:200,minWidth:200,baseColor:0x7c5cff,backgroundColor:0x04060f,amplitudeFactor:m?1.4:2.4,size:m?1.2:2,xOffset:0.0,yOffset:0.0});document.querySelector('.fallback').style.display='none'}catch(e){}}
 const bar=document.getElementById('bar');
 addEventListener('scroll',()=>{const m=document.documentElement.scrollHeight-innerHeight;bar.style.width=(m>0?scrollY/m*100:0)+'%'},{passive:true});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.15});
