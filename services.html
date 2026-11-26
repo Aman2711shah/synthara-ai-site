@@ -29,7 +29,7 @@ main{position:relative;z-index:2}
 .panel{min-height:100vh;display:flex;align-items:center;padding:110px 8vw}
 .hero{justify-content:center;text-align:center}
 .hero .inner{position:relative;isolation:isolate;padding:30px 24px}
-.hero .inner:before{content:"";position:absolute;inset:0 -30px;z-index:-1;background:radial-gradient(ellipse at center,rgba(4,6,15,.96) 0%,rgba(4,6,15,.88) 55%,rgba(4,6,15,0) 100%);pointer-events:none}
+.hero .inner:before{content:"";position:absolute;inset:0 -30px;z-index:-1;background:radial-gradient(ellipse at center,rgba(4,6,15,.94) 0%,rgba(4,6,15,.85) 55%,rgba(4,6,15,0) 100%);pointer-events:none}
 .inner{max-width:880px;width:100%}
 .eyebrow{display:flex;align-items:center;gap:14px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mid);margin-bottom:24px}
 .hero .eyebrow{justify-content:center}
@@ -82,12 +82,12 @@ form.book button{cursor:pointer;border:1px solid transparent;border-radius:99px;
 .direct{margin-top:26px;color:var(--mid);font-size:.9rem;font-weight:300}
 .direct a{color:var(--b);text-decoration:none}
 @media(max-width:860px){.ov{grid-template-columns:1fr}form.book{grid-template-columns:1fr}}
-#gl{overflow:hidden}.dim{position:fixed;inset:0;z-index:1;pointer-events:none;background:rgba(4,6,15,.55)}
+.dim{position:fixed;inset:0;z-index:1;pointer-events:none;background:rgba(4,6,15,.55)}
 </style>
 </head>
 <body>
 <div class="fallback"></div>
-<div id="gl"></div>
+<canvas id="gl"></canvas>
 <div class="dim"></div>
 <div class="vig"></div>
 <div class="progress"><i id="bar"></i></div>
@@ -97,32 +97,32 @@ form.book button{cursor:pointer;border:1px solid transparent;border-radius:99px;
 <h1>Everything we <em>build</em></h1>
 <p class="lede fade">Six AI services with clear, market-rate packages. Scroll for details, or jump straight to a consultation.</p>
 <div class="pills fade"><a class="pill solid" href="consultation.html">Book my consultation</a><a class="pill" href="#agents">Browse services</a></div></div></section>
-<section class="panel left" id="voice" id="agents"><div class="inner"><div class="eyebrow">01 / Agents</div>
+<section class="panel left" id="agents"><div class="inner"><div class="eyebrow">01 / Agents</div>
 <h2>Bots that <em>answer</em> and sell</h2>
 <p class="lede">Website, WhatsApp and Instagram chatbots trained on your own services and FAQs. They qualify leads, book meetings and hand over to your team when needed.</p>
 <ul class="list"><li>Lead capture and qualification, 24/7</li><li>Multi-language replies</li><li>CRM and calendar connection</li></ul></div></section>
 
-<section class="panel right" id="inbox"><div class="inner"><div class="eyebrow">02 / Voice</div>
+<section class="panel right" id="voice"><div class="inner"><div class="eyebrow">02 / Voice</div>
 <h2>AI <em>calling</em> agents</h2>
 <p class="lede">Outbound cold calling and inbound answering with a natural voice. The agent follows your script, handles objections, and logs every call with a summary.</p>
 <ul class="list"><li>Outbound campaigns and follow-ups</li><li>Appointment booking during the call</li><li>Call recordings, transcripts and outcomes</li></ul></div></section>
 
-<section class="panel left" id="workflow"><div class="inner"><div class="eyebrow">03 / Inbox</div>
+<section class="panel left" id="inbox"><div class="inner"><div class="eyebrow">03 / Inbox</div>
 <h2>Email <em>AI agent</em></h2>
 <p class="lede">An agent that reads incoming mail, drafts replies in your voice, sorts requests and follows up on its own, with approval rules you control.</p>
 <ul class="list"><li>Triage, tagging and routing</li><li>Draft or auto-send, your choice</li><li>Automatic follow-up sequences</li></ul></div></section>
 
-<section class="panel right" id="reach"><div class="inner"><div class="eyebrow">04 / Workflow</div>
+<section class="panel right" id="workflow"><div class="inner"><div class="eyebrow">04 / Workflow</div>
 <h2>Automate the <em>process</em></h2>
 <p class="lede">We map the manual steps in your operations and connect your tools so data moves without copy and paste: invoices, onboarding, reporting, approvals.</p>
 <ul class="list"><li>Workflow audit and design</li><li>Integrations with your existing tools</li><li>Monitoring and fixes after launch</li></ul></div></section>
 
-<section class="panel left" id="video"><div class="inner"><div class="eyebrow">05 / Reach</div>
+<section class="panel left" id="reach"><div class="inner"><div class="eyebrow">05 / Reach</div>
 <h2>WhatsApp and email <em>marketing</em></h2>
 <p class="lede">Campaigns, broadcasts and drip sequences with AI-written copy, audience segments and clear reporting on opens, replies and bookings.</p>
 <ul class="list"><li>Segmented broadcasts and drip flows</li><li>AI copy with your approval</li><li>Monthly performance report</li></ul></div></section>
 
-<section class="panel right"><div class="inner"><div class="eyebrow">06 / Video</div>
+<section class="panel right" id="video"><div class="inner"><div class="eyebrow">06 / Video</div>
 <h2>AI <em>avatar</em> videos</h2>
 <p class="lede">Talking-presenter videos for ads, explainers and social posts, in multiple languages, without a camera crew or studio.</p>
 <ul class="list"><li>Script, avatar, voice and captions</li><li>Vertical and horizontal formats</li><li>Fast turnaround</li></ul></div></section>
@@ -171,14 +171,112 @@ form.book button{cursor:pointer;border:1px solid transparent;border-radius:99px;
 </div></section>
 </main>
 <footer>&copy; 2026 Synthara AI</footer>
-<script src="https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.globe.min.js"></script>
 <script>
-const m=innerWidth<700;if(!matchMedia('(prefers-reduced-motion: reduce)').matches){try{VANTA.GLOBE({el:'#gl',mouseControls:true,touchControls:true,gyroControls:false,minHeight:200,minWidth:200,scale:1,scaleMobile:1,color:0x7c5cff,color2:0x38e8d0,size:m?.9:1.15,backgroundColor:0x04060f});document.querySelector('.fallback').style.display='none'}catch(e){}}
-const bar=document.getElementById('bar');
-addEventListener('scroll',()=>{const m=document.documentElement.scrollHeight-innerHeight;bar.style.width=(m>0?scrollY/m*100:0)+'%'},{passive:true});
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.15});
-document.querySelectorAll('.panel,.sect').forEach(p=>io.observe(p));
+/* HELIX FIELD - a particle constellation that morphs through six shapes as you scroll:
+   sphere, torus knot, double helix, cube lattice, spiral galaxy, wave field.
+   Hand-written WebGL2: attribute-less procedural particles (gl_VertexID), custom
+   vertex/fragment shaders, additive glow points. No libraries, no presets.
+   Cursor steers the field; scroll drives the morph. */
+(function(){
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var cv=document.getElementById('gl');
+var MOB=innerWidth<700;
+var gl=cv.getContext('webgl2',{antialias:false,alpha:false,depth:false,stencil:false,powerPreference:'high-performance'});
+if(!gl)return;
+var N=MOB?42000:150000;
+var VS='#version 300 es\nprecision highp float;\n'+
+'uniform float uT;uniform float uMorph;uniform vec2 uM;uniform mat4 uP;uniform float uCount;uniform float uDPR;\n'+
+'out float vMix;out float vTw;\n'+
+'vec3 h3(float n){return fract(sin(vec3(n*.1031,n*.1030,n*.0973))*vec3(43758.5453,22578.1459,19642.3490));}\n'+
+'vec3 shp(int k,float u,float i,vec3 h){\n'+
+'float TAU=6.2831853;\n'+
+'if(k==0){float y=1.-2.*u;float r=sqrt(max(0.,1.-y*y));float ph=i*2.399963;\n'+
+' return vec3(cos(ph)*r,y,sin(ph)*r)*(1.55+h.z*.25);}\n'+
+'if(k==1){float t=u*TAU;float p=2.,q=3.;float R=1.15;\n'+
+' float rr=R+.42*cos(q*t);\n'+
+' vec3 c=vec3(rr*cos(p*t),.42*sin(q*t),rr*sin(p*t));\n'+
+' return c+(h-.5)*.14;}\n'+
+'if(k==2){float s=h.x<.5?0.:3.14159;float t=u*TAU*3.;\n'+
+' float rung=step(.93,fract(u*60.));\n'+
+' vec3 a=vec3(cos(t+s)*.85,(u-.5)*3.4,sin(t+s)*.85);\n'+
+' vec3 b=vec3(cos(t)*.85*(1.-s/3.14159),(u-.5)*3.4,sin(t)*.85*(1.-s/3.14159));\n'+
+' return mix(a,b,rung)+(h-.5)*.08;}\n'+
+'if(k==3){float s=ceil(pow(uCount,.3334));float ix=mod(i,s);float iy=mod(floor(i/s),s);float iz=floor(i/(s*s));\n'+
+' return (vec3(ix,iy,iz)/s-.5)*3.6+(h-.5)*.05;}\n'+
+'if(k==4){float r=pow(u,.6)*2.4;float arm=floor(h.x*3.);\n'+
+' float an=arm*2.0944+r*2.1;\n'+
+' return vec3(cos(an)*r,(h.y-.5)*.22*(1.2-r*.3),sin(an)*r)+(h-.5)*.1;}\n'+
+'float g=ceil(sqrt(uCount));float gx=mod(i,g)/g-.5;float gz=floor(i/g)/g-.5;\n'+
+' return vec3(gx*5.2,sin(gx*9.+gz*6.)*.35,gz*5.2)+(h-.5)*.03;}\n'+
+'mat3 rotY(float a){float c=cos(a),s=sin(a);return mat3(c,0.,s,0.,1.,0.,-s,0.,c);}\n'+
+'mat3 rotX(float a){float c=cos(a),s=sin(a);return mat3(1.,0.,0.,0.,c,s,0.,-s,c);}\n'+
+'void main(){\n'+
+'float i=float(gl_VertexID);\n'+
+'float u=i/uCount;\n'+
+'vec3 h=h3(i);\n'+
+'int a=int(floor(uMorph));int b=min(a+1,5);\n'+
+'float f=smoothstep(.08,.92,fract(uMorph));\n'+
+'vec3 pa=shp(a,u,i,h);vec3 pb=shp(b,u,i,h);\n'+
+'vec3 pos=mix(pa,pb,f);\n'+
+'pos+=.05*sin(uT*(.5+h.x)+h.y*6.2831);\n'+
+'mat3 R=rotY(uT*.12+uM.x*1.1)*rotX(uM.y*.6+.18*sin(uT*.07));\n'+
+'pos=R*pos;\n'+
+'pos.z-=4.6;\n'+
+'gl_Position=uP*vec4(pos,1.);\n'+
+'float vz=max(.1,-pos.z);\n'+
+'gl_PointSize=clamp(uDPR*(34./vz)*(.5+h.z*.8),1.,4.);\n'+
+'vMix=clamp(u*1.15-.05+(h.y-.5)*.25+f*.15,0.,1.);\n'+
+'vTw=(.55+.45*sin(uT*(1.+h.y*2.)+h.z*40.))*clamp(1.7-vz*.15,.3,1.);\n'+
+'}';
+var FS='#version 300 es\nprecision mediump float;\n'+
+'in float vMix;in float vTw;out vec4 o;\n'+
+'void main(){vec2 c=gl_PointCoord-.5;float d=length(c);\n'+
+'float a=smoothstep(.5,.06,d);\n'+
+'vec3 col=mix(vec3(.55,.42,1.),vec3(.25,1.,.9),vMix);\n'+
+'o=vec4(col*a*vTw*.4,a*vTw*.4);}';
+function sh(t,s){var hh=gl.createShader(t);gl.shaderSource(hh,s);gl.compileShader(hh);
+if(!gl.getShaderParameter(hh,gl.COMPILE_STATUS)){console.warn('shader:',gl.getShaderInfoLog(hh));return null}return hh}
+var vs=sh(gl.VERTEX_SHADER,VS),fs=sh(gl.FRAGMENT_SHADER,FS);
+if(!vs||fs==null)return;
+var pr=gl.createProgram();gl.attachShader(pr,vs);gl.attachShader(pr,fs);gl.linkProgram(pr);
+if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){console.warn('link:',gl.getProgramInfoLog(pr));return}
+gl.useProgram(pr);
+gl.bindVertexArray(gl.createVertexArray());
+var uT=gl.getUniformLocation(pr,'uT'),uMorph=gl.getUniformLocation(pr,'uMorph'),uM=gl.getUniformLocation(pr,'uM'),
+uP=gl.getUniformLocation(pr,'uP'),uCount=gl.getUniformLocation(pr,'uCount'),uDPR=gl.getUniformLocation(pr,'uDPR');
+gl.enable(gl.BLEND);gl.blendFunc(gl.ONE,gl.ONE);
+gl.clearColor(.012,.02,.05,1);
+var asp=1,dpr=1;
+function rs(){dpr=Math.min(devicePixelRatio||1,MOB?1.25:1.75);cv.width=Math.round(innerWidth*dpr);cv.height=Math.round(innerHeight*dpr);asp=cv.width/cv.height;gl.viewport(0,0,cv.width,cv.height)}
+addEventListener('resize',rs);rs();
+function persp(fovy,as,n,f){var t=1/Math.tan(fovy/2),d=1/(n-f);
+return new Float32Array([t/as,0,0,0, 0,t,0,0, 0,0,(f+n)*d,-1, 0,0,2*f*n*d,0])}
+var mx=.5,my=.5,smx=.5,smy=.5,mo=0,tmo=0;
+function mfn(x,y){mx=x/innerWidth-.5;my=y/innerHeight-.5}
+addEventListener('mousemove',function(e){mfn(e.clientX,e.clientY)},{passive:true});
+addEventListener('touchmove',function(e){if(e.touches[0])mfn(e.touches[0].clientX,e.touches[0].clientY)},{passive:true});
+addEventListener('scroll',function(){var m=document.documentElement.scrollHeight-innerHeight;var p=m>0?scrollY/m:0;tmo=Math.min(5,p*5.999)},{passive:true});
+var t0=performance.now();
+(function loop(){
+var t=(performance.now()-t0)/1000;
+smx+=(mx-smx)*.05;smy+=(my-smy)*.05;mo+=(tmo-mo)*.045;
+gl.clear(gl.COLOR_BUFFER_BIT);
+gl.uniform1f(uT,t);
+gl.uniform1f(uMorph,mo);
+gl.uniform2f(uM,smx,smy);
+gl.uniformMatrix4fv(uP,false,persp(1.05,asp,.1,20));
+gl.uniform1f(uCount,N);
+gl.uniform1f(uDPR,dpr);
+gl.drawArrays(gl.POINTS,0,N);
+requestAnimationFrame(loop)})();
+document.querySelector('.fallback').style.display='none';
+})();
+</script>
+<script>
+var bar=document.getElementById('bar');
+addEventListener('scroll',function(){var m=document.documentElement.scrollHeight-innerHeight;bar.style.width=(m>0?scrollY/m*100:0)+'%'},{passive:true});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.15});
+document.querySelectorAll('.panel,.sect').forEach(function(p){io.observe(p)});
 </script>
 
 </body>
